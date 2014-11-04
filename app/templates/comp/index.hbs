@@ -1,0 +1,136 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-xs-12">
+      <div class="form-group">
+	<div class="input-group">
+	  {{input value=searchQuery classBinding=":form-control" action="search" placeholder="Enter query"}}
+	  <span class="input-group-btn">
+	    <button class="btn btn-primary" {{action search searchQuery}}>Search</button>
+	  </span>
+	</div>
+      </div>
+    </div>
+    {{#if model.meta.pagination.per_page}}
+      {{#if isMobile}}
+        <div class="col-xs-12 hidden-md hidden-lg">
+          <ul class="pager">
+	    <li class="previous">
+	      {{#if model.meta.pagination.previous}}
+	        {{#link-to 'comp.index' (query-params page=model.meta.pagination.previous)}}
+	        Previous
+	        {{/link-to}}
+	      {{else}}
+	        <span>Previous</span>
+	      {{/if}}
+	    </li>
+	    <li class="next">
+	      {{#if model.meta.pagination.next}}
+	        {{#link-to 'comp.index' (query-params page=model.meta.pagination.next)}}
+	        Next
+	        {{/link-to}}
+	      {{else}}
+	        <span>Next</span>
+	      {{/if}}
+	    </li>
+          </ul>
+        </div>
+      {{else}}
+        <div class="col-md-12 hidden-xs hidden-sm">
+          <ul class="pagination">
+	    {{#if model.meta.pagination.previous}}
+	      <li>
+	        {{#link-to 'comp.index' (query-params page=model.meta.pagination.previous)}}
+	        <span class="hidden-xs hidden-sm">&laquo;</span>
+	        {{/link-to}}
+	      </li>
+	    {{else}}
+	      <li class="disabled"><a>
+	        <span class="hidden-xs hidden-sm">&laquo;</span>
+	      </a></li>
+	    {{/if}}
+	    {{#each page in pageArray}}
+	      <li {{bind-attr class="page.active:active :hidden-xs :hidden-sm"}}>
+	        {{#link-to 'comp.index' (query-params page=page.page.page)}}{{page.page}}{{/link-to}}
+	      </li>
+	    {{/each}}
+	    <li></li>
+	    {{#if model.meta.pagination.next}}
+	      <li>
+	        {{#link-to 'comp.index' (query-params page=model.meta.pagination.next)}}
+	        <span class="hidden-xs hidden-sm">&raquo;</span>
+	        {{/link-to}}
+	      </li>
+	    {{else}}
+	      <li class="disabled"><a>
+	        <span class="hidden-xs hidden-sm">&raquo;</span>
+	      </a></li>
+	    {{/if}}
+          </ul>
+        </div>
+      {{/if}}
+      <div class="col-xs-12">
+        Showing {{pageStart}} - {{pageEnd}} of {{model.meta.query.total}}
+        {{#if singleResult}}result{{else}}results{{/if}}
+      </div>
+    {{/if}}
+    {{#if model}}
+      {{#unless isMobile}}
+        <div class="col-md-12 hidden-sm hidden-xs">
+          <table class="table">
+	    <thead>
+	      <tr>
+	        <th>Name</th>
+	        <th>Description</th>
+	        <th>Amount</th>
+	        <th>Tags</th>
+	        <th>Datasheet</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      {{#each item in controller}}
+	      <tr>
+	        <td>{{link-to item.name 'comp.show' item.id}}</td>
+	        <td>{{item.descriptionSummary}}</td>
+	        <td>{{item.amount}}</td>
+	        <td>
+	          {{#each tag in item.tagsArray}}
+	            {{link-to tag.name 'comp.index' (query-params query=tag.query)
+                    class="label label-default"}}
+	          {{/each}}
+	        </td>
+	        <td>
+	          {{#if item.files.datasheets}}
+	            pdf-link item.files.datasheets.0.id
+	          {{/if}}
+	        </td>
+	      </tr>
+	      {{/each}}
+	    </tbody>
+          </table>
+        </div>
+        <div class="panel-body"></div>
+      {{else}}
+        <div class="panel-body"></div>
+        <ul class="list-group hidden-md hidden-lg">
+          {{#each model}}
+          <li class="list-group-item list-group-component">
+            {{#link-to 'comp.show' id}}
+            <div class="nowrap-line">
+	      <div class="list-group-component-title">{{name}}</div>
+	      <div class="list-group-component-amount">({{amount}})</div>
+            </div>
+            <div class="list-group-component-body nowrap-line">{{descriptionSummary}}</div>
+            <div>
+	      {{#each tag in tagsArray}}
+	        <div class="label label-default">{{tag.name}}</div>
+	      {{/each}}
+            </div>
+            {{/link-to}}
+            <span class="list-group-component-right glyphicon glyphicon-chevron-right"></span>
+          </li>
+          {{/each}}
+        </ul>
+      {{/unless}}
+    {{/if}}
+  </div>
+</div>
