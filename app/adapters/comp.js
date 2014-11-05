@@ -5,15 +5,22 @@ export default Ember.Object.extend({
     simplePluralize: function(singular) {
 	return singular + 's';
     },
-    find: function(name, params) {
+    find: function(name, id_or_params, maybe_params) {
+	console.log("CompAdapter.find", name, id_or_params, maybe_params);
 	var that = this;
 	var id = null;
-	if(typeof(params) === "number") {
-	    id = params;
-	} else if(typeof(params) === "object") {
-	    id = params.id;
-	    delete params.id;
+	var params = null;
+	console.log("CompAdapter.find", name, typeof(id_or_params));
+
+	if(typeof(id_or_params) === "number" || typeof(id_or_params) === "string") {
+	    id = id_or_params;
+	    params = maybe_params;
+	} else if(typeof(id_or_params) === "object") {
+	    id = id_or_params.id;
+	    delete id_or_params.id;
+	    params = id_or_params;
 	}
+
 	if(id) {
 	    return this.fetch(this.urlOne(name, id, params))
 		.then(function(data) {
@@ -27,6 +34,7 @@ export default Ember.Object.extend({
 	}
     },
     fetch: function(url) {
+	console.log("CompAdapter.fetch", url);
 	return Ember.$.ajax({
 	    url: url,
 	    method: 'get',
@@ -35,6 +43,7 @@ export default Ember.Object.extend({
 	});
     },
     urlOne: function(name, id, params) {
+	console.log("CompAdapter.urlOne", name, id, params);
 	var url = ENV.APP.serviceURL + '/' + this.simplePluralize(name) + '/' + id;
 	if(params) {
 	    url += '?' + Ember.$.param(params);
@@ -42,6 +51,7 @@ export default Ember.Object.extend({
 	return url;
     },
     urlMany: function(name, params) {
+	console.log("CompAdapter.urlMany", name, params);
 	var url = ENV.APP.serviceURL + '/' + this.simplePluralize(name);
 	if(params) {
 	    url += '?' + Ember.$.param(params);

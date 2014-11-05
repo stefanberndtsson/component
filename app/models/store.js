@@ -1,8 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Object.extend({
+    adapter: function() {
+	return this.container.lookup('adapter:comp');
+    },
     find: function(name, id) {
-	var adapter = this.container.lookup('adapter:comp');
-	return adapter.find(name, id);
+	return this.adapter().find(name, id);
     }
 });
