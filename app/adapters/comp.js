@@ -2,8 +2,11 @@ import Ember from 'ember';
 import ENV from '../config/environment';
 
 export default Ember.Object.extend({
-    simplePluralize: function(singular) {
-	return singular + 's';
+    endpoints: {
+	component:	{ path: 'components'	},
+	result:		{ path: 'results'	},
+	amount:		{ path: 'amounts'	},
+	tag:		{ path: 'tags'		}
     },
     findOne: function(name, id, params) {
 	var that = this;
@@ -36,27 +39,50 @@ export default Ember.Object.extend({
 	    data: data
 	});
     },
+    endpoint: function(name) {
+	if(this.endpoints[name]) {
+	    return this.endpoints[name];
+	} else {
+	    console.log("ERROR! Missing endpoint for", name);
+	    return undefined;
+	}
+    },
+    plural: function(name) {
+	if(this.endpoint(name) && this.endpoint(name).plural) {
+	    return this.endpoint(name).plural;
+	} else {
+	    return name+'s';
+	}
+    },
+    singular: function(name) {
+	if(this.endpoint(name) && this.endpoint(name).singular) {
+	    return this.endpoint(name).singular;
+	} else {
+	    return name;
+	}
+    },
     urlOne: function(name, id, params) {
-	var url = ENV.APP.serviceURL + '/' + this.simplePluralize(name) + '/' + id;
+	var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path + '/' + id;
 	if(params) {
 	    url += '?' + Ember.$.param(params);
 	}
 	return url;
     },
     urlMany: function(name, params) {
-	var url = ENV.APP.serviceURL + '/' + this.simplePluralize(name);
+	var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path;
 	if(params) {
 	    url += '?' + Ember.$.param(params);
 	}
 	return url;
     },
     extractOne: function(name, data) {
-	data[name].meta = data.meta;
-	return data[name];
+	var singularName = this.singular(name);
+	data[singularName].meta = data.meta;
+	return data[singularName];
     },
     extractMany: function(name, data) {
-	var plural = this.simplePluralize(name);
-	var list = data[plural];
+	var pluralName = this.plural(name);
+	var list = data[pluralName];
 	list.meta = data.meta;
 	return list;
     },
