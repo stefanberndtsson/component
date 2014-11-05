@@ -1,0 +1,20 @@
+<div class="col-md-6 col-lg-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title"><h2>Preview: {{name}}</h2></div>
+    </div>
+    <div class="panel-body">
+      <p class="lead">{{descriptionSummary}}</p>
+      <div>{{markdown-text descriptionRest}}</div>
+      <p>
+	<strong>Amount: </strong>{{amount}}
+	{{#if spares}}
+	(+spares)
+	{{/if}}
+      </p>
+      {{#each tag in tags}}
+      <span class="label label-default">{{tag}}</span>
+      {{/each}}
+    </div>
+  </div>
+</div>

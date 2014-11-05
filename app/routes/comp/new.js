@@ -1,0 +1,10 @@
+import CompEditRoute from '../comp/edit';
+
+export default CompEditRoute.extend({
+    model: function() {
+	return {};
+    },
+    setupController: function(controller, model) {
+	controller.set('model', model);
+    }
+});

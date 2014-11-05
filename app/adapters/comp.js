@@ -5,36 +5,21 @@ export default Ember.Object.extend({
     simplePluralize: function(singular) {
 	return singular + 's';
     },
-    find: function(name, id_or_params, maybe_params) {
-	console.log("CompAdapter.find", name, id_or_params, maybe_params);
+    findOne: function(name, id, params) {
 	var that = this;
-	var id = null;
-	var params = null;
-	console.log("CompAdapter.find", name, typeof(id_or_params));
-
-	if(typeof(id_or_params) === "number" || typeof(id_or_params) === "string") {
-	    id = id_or_params;
-	    params = maybe_params;
-	} else if(typeof(id_or_params) === "object") {
-	    id = id_or_params.id;
-	    delete id_or_params.id;
-	    params = id_or_params;
-	}
-
-	if(id) {
-	    return this.fetch(this.urlOne(name, id, params))
-		.then(function(data) {
-		    return that.extractOne(name, data);
-		});
-	} else {
-	    return this.fetch(this.urlMany(name, params))
-		.then(function(data) {
-		    return that.extractMany(name, data);
-		});
-	}
+	return this.fetch(this.urlOne(name, id, params))
+	    .then(function(data) {
+		return that.extractOne(name, data);
+	    });
+    },
+    findMany: function(name, params) {
+	var that = this;
+	return this.fetch(this.urlMany(name, params))
+	    .then(function(data) {
+		return that.extractMany(name, data);
+	    });
     },
     fetch: function(url) {
-	console.log("CompAdapter.fetch", url);
 	return Ember.$.ajax({
 	    url: url,
 	    method: 'get',
@@ -42,8 +27,16 @@ export default Ember.Object.extend({
 	    type: 'json'
 	});
     },
+    send: function(url, method, data) {
+	return Ember.$.ajax({
+	    url: url,
+	    method: method,
+	    crossDomain: true,
+	    type: 'json',
+	    data: data
+	});
+    },
     urlOne: function(name, id, params) {
-	console.log("CompAdapter.urlOne", name, id, params);
 	var url = ENV.APP.serviceURL + '/' + this.simplePluralize(name) + '/' + id;
 	if(params) {
 	    url += '?' + Ember.$.param(params);
@@ -51,7 +44,6 @@ export default Ember.Object.extend({
 	return url;
     },
     urlMany: function(name, params) {
-	console.log("CompAdapter.urlMany", name, params);
 	var url = ENV.APP.serviceURL + '/' + this.simplePluralize(name);
 	if(params) {
 	    url += '?' + Ember.$.param(params);
@@ -67,5 +59,27 @@ export default Ember.Object.extend({
 	var list = data[plural];
 	list.meta = data.meta;
 	return list;
+    },
+    saveUpdate: function(name, id, data) {
+	var that = this;
+	var session = this.container.lookup('simple-auth-session:main');
+	var dataObject = {};
+	dataObject[name] = data;
+	dataObject['token'] = session.get('token');
+	return this.send(this.urlOne(name, id), 'put', dataObject)
+	    .then(function(data) {
+		return that.extractOne(name, data);
+	    });
+    },
+    saveCreate: function(name, data) {
+	var that = this;
+	var session = this.container.lookup('simple-auth-session:main');
+	var dataObject = {};
+	dataObject[name] = data;
+	dataObject['token'] = session.get('token');
+	return this.send(this.urlMany(name), 'post', dataObject)
+	    .then(function(data) {
+		return that.extractOne(name, data);
+	    });
     }
 });

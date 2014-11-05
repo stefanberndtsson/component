@@ -8,10 +8,10 @@ export default Ember.ObjectController.extend({
     isMobileBinding: 'controllers.application.isMobile',
     isDesktopBinding: 'controllers.application.isDesktop',
     needsValue: function() {
-	var amountObject = this.get('amounts')[this.get('model.amountId')];
+	var amountObject = this.get('amounts')[this.get('model.amount_id')];
 	if(!amountObject) { return false; }
-	return amountObject.get('must_have_value');
-    }.property('model.amountId'),
+	return amountObject.must_have_value;
+    }.property('model.amount_id'),
     descriptionSummary: function() {
 	if(!this.get('model.description')) {
 	    return "";
