@@ -88,22 +88,22 @@
 	    </thead>
 	    <tbody>
 	      {{#each item in controller}}
-	      <tr>
-	        <td>{{link-to item.name 'comp.show' item.id}}</td>
-	        <td>{{item.descriptionSummary}}</td>
-	        <td>{{item.amount}}</td>
-	        <td>
-	          {{#each tag in item.tagsArray}}
-	            {{link-to tag.name 'comp.index' (query-params query=tag.query)
-                    class="label label-default"}}
-	          {{/each}}
-	        </td>
-	        <td>
-	          {{#if item.files.datasheets}}
-	            {{pdf-link item.files.datasheets.0.id}}
-	          {{/if}}
-	        </td>
-	      </tr>
+	        <tr>
+	          <td>{{link-to item.name 'comp.show' item.id}}</td>
+	          <td>{{item.descriptionSummary}}</td>
+	          <td>{{item.amount}}</td>
+	          <td>
+	            {{#each tag in item.tagsArray}}
+	              {{link-to tag.name 'comp.index' (query-params query=tag.query)
+                      class="label label-default"}}
+	            {{/each}}
+	          </td>
+	          <td>
+	            {{#if item.files.datasheets}}
+	              {{pdf-link item.files.datasheets.0.id}}
+	            {{/if}}
+	          </td>
+	        </tr>
 	      {{/each}}
 	    </tbody>
           </table>
@@ -111,21 +111,21 @@
       {{else}}
         <ul class="list-group hidden-md hidden-lg">
           {{#each item in controller}}
-          <li class="list-group-item list-group-component">
-            {{#link-to 'comp.show' item.id}}
-            <div class="nowrap-line">
-	      <div class="list-group-component-title">{{item.name}}</div>
-	      <div class="list-group-component-amount">({{item.amount}})</div>
-            </div>
-            <div class="list-group-component-body nowrap-line">{{item.descriptionSummary}}</div>
-            <div>
-	      {{#each tag in item.tagsArray}}
-	        <div class="label label-default">{{tag.name}}</div>
-	      {{/each}}
-            </div>
-            {{/link-to}}
-            <span class="list-group-component-right glyphicon glyphicon-chevron-right"></span>
-          </li>
+            <li class="list-group-item list-group-component">
+              {{#link-to 'comp.show' item.id}}
+              <div class="nowrap-line">
+	        <div class="list-group-component-title">{{item.name}}</div>
+	        <div class="list-group-component-amount">({{item.amount}})</div>
+              </div>
+              <div class="list-group-component-body nowrap-line">{{item.descriptionSummary}}</div>
+              <div>
+	        {{#each tag in item.tagsArray}}
+	          <div class="label label-default">{{tag.name}}</div>
+	        {{/each}}
+              </div>
+              {{/link-to}}
+              <span class="list-group-component-right glyphicon glyphicon-chevron-right"></span>
+            </li>
           {{/each}}
         </ul>
       {{/unless}}
