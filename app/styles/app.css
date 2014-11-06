@@ -43,3 +43,52 @@ span.has-error {
     font-weight: bold;
 }
 
+.list-group-component {
+    position: relative;
+    height: 8em;
+    text-decoration: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+.list-group-component a {
+    color: black;
+    width: 100%;
+    display: block;
+    height: 8em;
+    padding: 10px 30px;
+}
+
+.list-group-component a:hover {
+    color: black;
+    text-decoration: none;
+    background-color: #ddd;
+}
+
+.list-group-component-right {
+    position: absolute;
+    right: 20px;
+    top: 3.5em;
+}
+
+.list-group-component-title {
+    font-size: 200%;
+    display: inline-block;
+}
+
+.nowrap-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 30px;
+}
+
+.list-group-component-body {
+    display: block;
+}
+
+.list-group-component-amount {
+    display: inline-block;
+    color: #888;
+}
+

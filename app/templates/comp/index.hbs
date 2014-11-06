@@ -112,16 +112,16 @@
       {{else}}
         <div class="panel-body"></div>
         <ul class="list-group hidden-md hidden-lg">
-          {{#each model}}
+          {{#each item in controller}}
           <li class="list-group-item list-group-component">
-            {{#link-to 'comp.show' id}}
+            {{#link-to 'comp.show' item.id}}
             <div class="nowrap-line">
-	      <div class="list-group-component-title">{{name}}</div>
-	      <div class="list-group-component-amount">({{amount}})</div>
+	      <div class="list-group-component-title">{{item.name}}</div>
+	      <div class="list-group-component-amount">({{item.amount}})</div>
             </div>
-            <div class="list-group-component-body nowrap-line">{{descriptionSummary}}</div>
+            <div class="list-group-component-body nowrap-line">{{item.descriptionSummary}}</div>
             <div>
-	      {{#each tag in tagsArray}}
+	      {{#each tag in item.tagsArray}}
 	        <div class="label label-default">{{tag.name}}</div>
 	      {{/each}}
             </div>
