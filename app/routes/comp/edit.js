@@ -23,6 +23,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		    that.send('invalidateSession');
 		} else {
 		    that.controller.set('error', true);
+		    that.controller.set('errors', reason.responseJSON.errors);
 		}
 	    });
 	}
