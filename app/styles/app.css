@@ -2,3 +2,7 @@
     height: 24px;
 }
 
+.panel-title a.btn-primary {
+    color: #fff !important;
+}
+

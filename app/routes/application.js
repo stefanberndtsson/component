@@ -11,7 +11,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	});
     },
     setupController: function(controller, model) {
-	console.log("ApplicationRoute.setupController", model);
 	controller.set('content', {});
 	controller.set('amounts', {});
 	controller.set('amountsSelection', model.amount);
