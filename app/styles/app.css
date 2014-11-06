@@ -6,3 +6,40 @@
     color: #fff !important;
 }
 
+.hide-element {
+    display: none !important;
+}
+
+.thumbnail-asset {
+    position: relative;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;
+}
+
+.thumbnail-asset:hover .remove-asset {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #999;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 200%;
+    display: inline-block;
+}
+
+.remove-asset {
+    display: none;
+}
+
+.image-link-thumbnail {
+    width: 100%;
+}
+
+span.has-error {
+    color: #a94442;
+    font-weight: bold;
+}
+
