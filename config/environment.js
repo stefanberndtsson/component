@@ -44,7 +44,9 @@ module.exports = function(environment) {
     }
 
     if (environment === 'production') {
-
+	ENV.APP.authenticationBaseURL = 'https://component-api.nocrew.org/session';
+	ENV.APP.serviceURL = 'https://component-api.nocrew.org';
+	ENV.APP.fileURL = 'https://component-api.nocrew.org/asset_data';
     }
 
     return ENV;
