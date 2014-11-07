@@ -23,20 +23,32 @@ export default Ember.Object.extend({
 	    });
     },
     fetch: function(url) {
+	var session = this.container.lookup('simple-auth-session:main');
+	var headers = {};
+	if(session && session.get('isAuthenticated')) {
+	    headers["Authorization"] = "Token " + session.get('token');
+	}
 	return Ember.$.ajax({
 	    url: url,
 	    method: 'get',
 	    crossDomain: true,
-	    type: 'json'
+	    type: 'json',
+	    headers: headers
 	});
     },
     send: function(url, method, data) {
+	var session = this.container.lookup('simple-auth-session:main');
+	var headers = {};
+	if(session && session.get('isAuthenticated')) {
+	    headers["Authorization"] = "Token " + session.get('token');
+	}
 	return Ember.$.ajax({
 	    url: url,
 	    method: method,
 	    crossDomain: true,
 	    type: 'json',
-	    data: data
+	    data: data,
+	    headers: headers
 	});
     },
     endpoint: function(name) {
@@ -88,10 +100,8 @@ export default Ember.Object.extend({
     },
     saveUpdate: function(name, id, data) {
 	var that = this;
-	var session = this.container.lookup('simple-auth-session:main');
 	var dataObject = {};
 	dataObject[name] = data;
-	dataObject['token'] = session.get('token');
 	return this.send(this.urlOne(name, id), 'put', dataObject)
 	    .then(function(data) {
 		return that.extractOne(name, data);
@@ -99,10 +109,8 @@ export default Ember.Object.extend({
     },
     saveCreate: function(name, data) {
 	var that = this;
-	var session = this.container.lookup('simple-auth-session:main');
 	var dataObject = {};
 	dataObject[name] = data;
-	dataObject['token'] = session.get('token');
 	return this.send(this.urlMany(name), 'post', dataObject)
 	    .then(function(data) {
 		return that.extractOne(name, data);
