@@ -7,6 +7,7 @@ export default Ember.Route.extend({
     },
     setupController: function(controller, model) {
 	controller.set('model', model);
+	this.controllerFor('application').set('pageTitle', model.name);
     },
     actions: {
 	upload: function(fileUploadId) {

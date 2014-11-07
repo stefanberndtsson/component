@@ -21,6 +21,11 @@ export default Ember.Route.extend({
 	    controller.transitionToRoute('comp.index', {queryParams: {page: 1}});
 	    controller.set('page', 1);
 	}
+	var title = 'Search';
+	if(controller.get('query')) {
+	    title += ': '+controller.get('query');
+	}
+	this.controllerFor('application').set('pageTitle', title);
     },
     actions: {
 	search: function(query) {

@@ -8,6 +8,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     setupController: function(controller, model) {
 	controller.set('model', model);
 	controller.set('error', false);
+	this.controllerFor('application').set('pageTitle', 'Edit - ' + model.name);
     },
     actions: {
 	saveComponent: function(component) {
