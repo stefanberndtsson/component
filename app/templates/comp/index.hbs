@@ -3,7 +3,8 @@
     <div class="col-xs-12">
       <div class="form-group">
 	<div class="input-group">
-	  {{input value=searchQuery classBinding=":form-control" action="search" placeholder="Enter query"}}
+	  {{input id="search-query" value=searchQuery classBinding=":form-control"
+          action="search" placeholder="Enter query"}}
 	  <span class="input-group-btn">
 	    <button class="btn btn-primary" {{action search searchQuery}}>Search</button>
 	  </span>

@@ -29,6 +29,9 @@ export default Ember.Route.extend({
     },
     actions: {
 	search: function(query) {
+	    if(this.controller.get('isMobile')) {
+		Ember.$('#search-query').blur();
+	    }
 	    this.transitionTo('comp.index', {queryParams: {query: query}});
 	}
     }
