@@ -1,16 +1,15 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid hidden-md hidden-lg">
-    <ul class="nav navbar-nav container">
-      <li class="col-xs-2">{{#link-to 'comp.index' (query-params query='')}}List{{/link-to}}</li>
+    <ul class="nav navbar-nav col-xs-12 navbar-full-width">
+      <li class="pull-left">{{#link-to 'comp.index' (query-params query='')}}List{{/link-to}}</li>
       {{#if session.isAuthenticated}}
-      <li class="col-xs-2">{{#link-to 'comp.new'}}Add{{/link-to}}</li>
+      <li class="pull-left">{{#link-to 'comp.new'}}Add{{/link-to}}</li>
       {{/if}}
       {{#if session.isAuthenticated}}
-      <li class="col-xs-2 pull-right"><a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a></li>
+      <li class="pull-right"><a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a></li>
       {{else}}
-      <li class="col-xs-2 pull-right">{{link-to "Login" 'login'}}</li>
+      <li class="pull-right">{{link-to "Login" 'login'}}</li>
       {{/if}}
-      <p class="navbar-text col-xs-1 pull-right"></p>
     </ul>
   </div>
   <div class="container-fluid hidden-xs hidden-sm">

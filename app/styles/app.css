@@ -106,3 +106,12 @@ span.has-error {
 .panel-body {
     padding: 0;
 }
+
+.navbar-full-width {
+    padding-right: 0;
+    margin-right: -15px;
+}
+
+.navbar-right {
+    margin-right: 0;
+}
