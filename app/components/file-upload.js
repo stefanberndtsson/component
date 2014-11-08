@@ -19,19 +19,32 @@ export default Ember.FileField.extend({
 	
 	if(!token) { return; }
 
+	var preFilters = Ember.$.Callbacks();
+	var authPrefilter = function(options) {
+	    if(!options.headers) {
+		options.headers = {};
+	    }
+	    options.headers['Authorization'] = "Token "+token;
+	    return options;
+	};
+
 	var uploader = Ember.Uploader.create({
 	    url: uploadUrl
 	});
 
 	uploader.on('didUpload', function() {
 	    that.set('value', '');
+	    preFilters.remove(authPrefilter);
 	    store.find('component', componentId).then(function(reloadedModel) {
 		controller.set('model', reloadedModel);
 	    });
 	});
 
 	if (!Ember.isEmpty(files)) {
-	    uploader.upload(files[0], {component_id: componentId, data_type: dataType, token: token});
+	    Ember.$.ajaxPrefilter(preFilters.fire);
+	    preFilters.add(authPrefilter);
+	
+	    uploader.upload(files[0], {component_id: componentId, data_type: dataType});
 	}
     }).observes('files')
 });

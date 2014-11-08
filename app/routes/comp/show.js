@@ -22,7 +22,8 @@ export default Ember.Route.extend({
 
 	    Ember.$.ajax({
 		type: 'DELETE',
-		url: ENV.APP.fileURL+'/'+assetId+'?token='+session.get('token')
+		url: ENV.APP.fileURL+'/'+assetId,
+		headers: { "Authorization": "Token " + session.get('token')}
 	    }).then(function() {
 		store.find('component', componentId).then(function(reloadedModel) {
 		    controller.set('model', reloadedModel);
