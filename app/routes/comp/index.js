@@ -14,6 +14,7 @@ export default Ember.Route.extend({
 	});
     },
     setupController: function(controller, model) {
+	controller.set('loading', true);
 	controller.set('model', model);
 	controller.set('searchQuery', controller.get('query'));
 

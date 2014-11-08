@@ -19,4 +19,15 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	    controller.set('amounts.'+item.id, item);
 	});
     },
+    actions: {
+	willTransition: function() {
+	    this.controller.set('loading', true);
+	},
+	didTransition: function() {
+	    var that = this;
+	    Ember.run.later(function() {
+		that.controller.set('loading', false);
+	    });
+	}
+    }
 });

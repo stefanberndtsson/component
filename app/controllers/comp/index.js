@@ -7,6 +7,7 @@ export default Ember.ArrayController.extend({
     isMobileBinding: 'controllers.application.isMobile',
     isDesktopBinding: 'controllers.application.isDesktop',
     sortProperties: ['name'],
+    loading: false,
     pageArray: function() {
 	var pArray = [];
 	for(var i=0;i<this.get('model.meta.pagination.pages');i++) {

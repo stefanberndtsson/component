@@ -69,10 +69,16 @@
           </ul>
         </div>
       {{/if}}
-      <div class="col-xs-12">
-        Showing {{pageStart}} - {{pageEnd}} of {{model.meta.query.total}}
-        {{#if singleResult}}result{{else}}results{{/if}}
-      </div>
+      {{#if controllers.application.loading}}
+        <div class="col-xs-12">
+          Loading...
+        </div>
+      {{else}}
+        <div class="col-xs-12">
+          Showing {{pageStart}} - {{pageEnd}} of {{model.meta.query.total}}
+          {{#if singleResult}}result{{else}}results{{/if}}
+        </div>
+      {{/if}}
     {{/if}}
     {{#if model}}
       {{#unless isMobile}}
