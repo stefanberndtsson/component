@@ -87,7 +87,7 @@
 	    <thead>
 	      <tr>
 	        <th>Name</th>
-	        <th>Description</th>
+	        <th>Summary</th>
 	        <th>Amount</th>
 	        <th>Tags</th>
 	        <th>Datasheet</th>
@@ -97,7 +97,7 @@
 	      {{#each item in controller}}
 	        <tr>
 	          <td>{{link-to item.name 'comp.show' item.id}}</td>
-	          <td>{{item.descriptionSummary}}</td>
+	          <td>{{item.summary}}</td>
 	          <td>{{item.amount}}</td>
 	          <td>
 	            {{#each tag in item.tagsArray}}
@@ -124,7 +124,7 @@
 	        <div class="list-group-component-title">{{item.name}}</div>
 	        <div class="list-group-component-amount">({{item.amount}})</div>
               </div>
-              <div class="list-group-component-body nowrap-line">{{item.descriptionSummary}}</div>
+              <div class="list-group-component-body nowrap-line">{{item.summary}}</div>
               <div>
 	        {{#each tag in item.tagsArray}}
 	          <div class="label label-default">{{tag.name}}</div>
