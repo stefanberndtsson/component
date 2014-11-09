@@ -33,7 +33,7 @@ export default Ember.Route.extend({
 	    if(this.controller.get('isMobile')) {
 		Ember.$('#search-query').blur();
 	    }
-	    this.transitionTo('comp.index', {queryParams: {query: query}});
+	    this.transitionTo('comp.index', {queryParams: {query: query, page: 1}});
 	}
     }
 });
