@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid hidden-md hidden-lg">
     <ul class="nav navbar-nav col-xs-12 navbar-full-width">
-      <li class="pull-left">{{#link-to 'comp.index' (query-params query='')}}List{{/link-to}}</li>
+      <li class="pull-left">{{#link-to 'comp.index' (query-params query='' page=1)}}List{{/link-to}}</li>
       {{#if session.isAuthenticated}}
       <li class="pull-left">{{#link-to 'comp.new'}}Add{{/link-to}}</li>
       {{/if}}
@@ -14,7 +14,7 @@
   </div>
   <div class="container-fluid hidden-xs hidden-sm">
     <ul class="nav navbar-nav">
-      <li>{{#link-to 'comp.index' (query-params query='')}}List components{{/link-to}}</li>
+      <li>{{#link-to 'comp.index' (query-params query='' page=1)}}List components{{/link-to}}</li>
       {{#if session.isAuthenticated}}
       <li>{{#link-to 'comp.new'}}Add component{{/link-to}}</li>
       {{/if}}
