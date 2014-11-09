@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
     var ENV = {
-	modulePrefix: 'component-nodata',
+	modulePrefix: 'component',
 	environment: environment,
 	baseURL: '/',
 	locationType: 'hash',
