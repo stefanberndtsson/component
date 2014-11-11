@@ -36,5 +36,8 @@ export default Ember.Object.extend({
 	} else {
 	    return this.adapter().saveCreate(name, model);
 	}
+    },
+    destroy: function(name, id) {
+	return this.adapter().destroy(name, id);
     }
 });

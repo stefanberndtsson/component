@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import ENV from '../../config/environment';
 
 export default Ember.Route.extend({
     model: function(params) {
@@ -15,16 +14,10 @@ export default Ember.Route.extend({
 	},
 	removeAsset: function(component, assetId) {
 	    var store = this.store;
-	    var session = this.get('session');
 	    var controller = this.get('controller');
 	    var model = controller.get('model');
 	    var componentId = model.id;
-
-	    Ember.$.ajax({
-		type: 'DELETE',
-		url: ENV.APP.fileURL+'/'+assetId,
-		headers: { "Authorization": "Token " + session.get('token')}
-	    }).then(function() {
+	    store.destroy('asset_data', assetId).then(function() {
 		store.find('component', componentId).then(function(reloadedModel) {
 		    controller.set('model', reloadedModel);
 		});

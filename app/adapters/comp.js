@@ -4,6 +4,7 @@ import ENV from '../config/environment';
 export default Ember.Object.extend({
     endpoints: {
 	component:	{ path: 'components'	},
+	asset_data:	{ path: 'asset_data'	},
 	result:		{ path: 'results'	},
 	amount:		{ path: 'amounts'	},
 	tag:		{ path: 'tags'		}
@@ -48,6 +49,20 @@ export default Ember.Object.extend({
 	    crossDomain: true,
 	    type: 'json',
 	    data: data,
+	    headers: headers
+	});
+    },
+    sendDelete: function(url) {
+	var session = this.container.lookup('simple-auth-session:main');
+	var headers = {};
+	if(session && session.get('isAuthenticated')) {
+	    headers["Authorization"] = "Token " + session.get('token');
+	}
+	return Ember.$.ajax({
+	    url: url,
+	    method: 'delete',
+	    crossDomain: true,
+	    type: 'json',
 	    headers: headers
 	});
     },
@@ -97,6 +112,9 @@ export default Ember.Object.extend({
 	var list = data[pluralName];
 	list.meta = data.meta;
 	return list;
+    },
+    destroy: function(name, id) {
+	return this.sendDelete(this.urlOne(name, id));
     },
     saveUpdate: function(name, id, data) {
 	var that = this;
