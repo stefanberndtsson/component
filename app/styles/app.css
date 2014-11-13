@@ -101,6 +101,8 @@ span.has-error {
 
 .panel-default > .panel-heading {
     background-color: inherit;
+    margin-bottom: 5px;
+    padding-bottom: 0;
 }
 
 .panel-body {

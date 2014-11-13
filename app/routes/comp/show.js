@@ -5,6 +5,7 @@ export default Ember.Route.extend({
 	return this.store.find('component', params.id);
     },
     setupController: function(controller, model) {
+	console.log("show.setup", model);
 	controller.set('model', model);
 	this.controllerFor('application').set('pageTitle', model.name);
     },
