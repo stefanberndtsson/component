@@ -24,10 +24,5 @@ export default Ember.ObjectController.extend({
 	} else {
 	    return amount;
 	}
-    }.property('model.amount', 'model.amount_value'),
-    tagsArray: function() {
-	return this.get('model.tags').map(function(item) {
-	    return {name: item, query: 'tags:'+item};
-	});
-    }.property('model.tags')
+    }.property('model.amount', 'model.amount_value')
 });

@@ -1,0 +1,7 @@
+{{#each tag in tagsArray}}
+  {{#if unlinked}}
+    <span class="label label-default">{{tag.name}}</span>
+  {{else}}
+    {{link-to tag.name 'comp.index' (query-params query=tag.query) class="label label-default"}}
+  {{/if}}
+{{/each}}

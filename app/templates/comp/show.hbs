@@ -18,9 +18,7 @@
 	  (+spares)
 	  {{/if}}
 	</p>
-	{{#each tag in tags}}
-	<span class="label label-default">{{tag}}</span>
-	{{/each}}
+        {{tag-labels tags=tags}}
 	{{#if session.isAuthenticated}}
 	<div class="container-fluid">&nbsp;</div>
 	<nav class="navbar navbar-default">
