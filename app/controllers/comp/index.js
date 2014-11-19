@@ -1,12 +1,10 @@
 import Ember from 'ember';
 
-export default Ember.ArrayController.extend({
+export default Ember.Controller.extend({
     needs: ['application'],
     queryParams: ['page', 'query'],
-    itemController: 'comp.item',
     isMobileBinding: 'controllers.application.isMobile',
     isDesktopBinding: 'controllers.application.isDesktop',
-    sortProperties: ['name'],
     loading: false,
     pageArray: function() {
 	var pArray = [];

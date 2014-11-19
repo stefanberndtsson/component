@@ -10,6 +10,7 @@ export default Ember.Route.extend({
 	    params.page = 1;
 	}
 	return this.store.find('result', params).then(function(data) {
+	    console.log("DEBUG", data);
 	    return data;
 	});
     },

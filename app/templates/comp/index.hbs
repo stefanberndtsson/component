@@ -94,36 +94,16 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	      {{#each item in controller}}
-	        <tr>
-	          <td>{{link-to item.name 'comp.show' item.id}}</td>
-	          <td>{{item.summary}}</td>
-	          <td>{{item.amount}}</td>
-	          <td>{{tag-labels tags=item.tags}}</td>
-	          <td>
-	            {{#if item.files.datasheets}}
-	              {{pdf-link item.files.datasheets.0.id}}
-	            {{/if}}
-	          </td>
-	        </tr>
+	      {{#each item in model}}
+                {{comp-list-item-desktop item=item}}
 	      {{/each}}
 	    </tbody>
           </table>
         </div>
       {{else}}
         <ul class="list-group hidden-md hidden-lg">
-          {{#each item in controller}}
-            <li class="list-group-item list-group-component">
-              {{#link-to 'comp.show' item.id}}
-              <div class="nowrap-line">
-	        <div class="list-group-component-title">{{item.name}}</div>
-	        <div class="list-group-component-amount">({{item.amount}})</div>
-              </div>
-              <div class="list-group-component-body nowrap-line">{{item.summary}}</div>
-              <div>{{tag-labels tags=item.tags unlinked=true}}</div>
-              {{/link-to}}
-              <span class="list-group-component-right glyphicon glyphicon-chevron-right"></span>
-            </li>
+          {{#each item in model}}
+            {{comp-list-item-mobile item=item}}
           {{/each}}
         </ul>
       {{/unless}}

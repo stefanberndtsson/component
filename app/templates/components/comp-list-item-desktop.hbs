@@ -1,0 +1,9 @@
+<td>{{link-to item.name 'comp.show' item.id}}</td>
+<td>{{item.summary}}</td>
+<td>{{amount}}</td>
+<td>{{tag-labels tags=item.tags}}</td>
+<td>
+  {{#if item.files.datasheets}}
+    {{pdf-link item.files.datasheets.0.id}}
+  {{/if}}
+</td>
