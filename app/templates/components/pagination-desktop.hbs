@@ -1,18 +1,19 @@
-<div class="col-md-12 hidden-xs hidden-sm">
+{{#if isDesktop}}
+<div class="col-md-12">
   <ul class="pagination">
     {{#if pagination.previous}}
       <li>
 	{{#link-to 'comp.index' (query-params page=pagination.previous)}}
-	<span class="hidden-xs hidden-sm">&laquo;</span>
+	<span>&laquo;</gspan>
 	{{/link-to}}
       </li>
     {{else}}
       <li class="disabled"><a>
-	<span class="hidden-xs hidden-sm">&laquo;</span>
+	<span>&laquo;</span>
       </a></li>
     {{/if}}
     {{#each page in pageArray}}
-      <li {{bind-attr class="page.active:active :hidden-xs :hidden-sm"}}>
+      <li {{bind-attr class="page.active:active"}}>
 	{{#link-to 'comp.index' (query-params page=page.page.page)}}{{page.page}}{{/link-to}}
       </li>
     {{/each}}
@@ -20,13 +21,14 @@
     {{#if pagination.next}}
       <li>
 	{{#link-to 'comp.index' (query-params page=pagination.next)}}
-	<span class="hidden-xs hidden-sm">&raquo;</span>
+	<span>&raquo;</span>
 	{{/link-to}}
       </li>
     {{else}}
       <li class="disabled"><a>
-	<span class="hidden-xs hidden-sm">&raquo;</span>
+	<span>&raquo;</span>
       </a></li>
     {{/if}}
   </ul>
 </div>
+{{/if}}

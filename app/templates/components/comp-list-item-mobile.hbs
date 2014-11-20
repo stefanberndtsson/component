@@ -1,3 +1,4 @@
+{{#if isMobile}}
 {{#link-to 'comp.show' item.id}}
 <div class="nowrap-line">
   <div class="list-group-component-title">{{item.name}}</div>
@@ -7,3 +8,4 @@
 <div>{{tag-labels tags=item.tags unlinked=true}}</div>
 {{/link-to}}
 <span class="list-group-component-right glyphicon glyphicon-chevron-right"></span>
+{{/if}}

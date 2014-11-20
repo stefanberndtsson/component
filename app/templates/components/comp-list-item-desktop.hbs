@@ -1,3 +1,4 @@
+{{#if isDesktop}}
 <td>{{link-to item.name 'comp.show' item.id}}</td>
 <td>{{item.summary}}</td>
 <td>{{amount}}</td>
@@ -7,3 +8,4 @@
     {{pdf-link item.files.datasheets.0.id}}
   {{/if}}
 </td>
+{{/if}}

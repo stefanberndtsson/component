@@ -13,9 +13,9 @@
     </div>
     {{#if model.meta.pagination.per_page}}
       {{#if isMobile}}
-        {{pagination-mobile pagination=model.meta.pagination}}
+        {{pagination-mobile pagination=model.meta.pagination isMobile=isMobile}}
       {{else}}
-        {{pagination-desktop pagination=model.meta.pagination}}
+        {{pagination-desktop pagination=model.meta.pagination isDesktop=isDesktop}}
       {{/if}}
       {{#if controllers.application.loading}}
         <div class="col-xs-12">
@@ -29,7 +29,7 @@
       {{/if}}
     {{/if}}
     {{#if model}}
-      {{#unless isMobile}}
+      {{#if isDesktop}}
         <div class="col-md-12 hidden-sm hidden-xs">
           <table class="table">
 	    <thead>
@@ -43,18 +43,19 @@
 	    </thead>
 	    <tbody>
 	      {{#each item in model}}
-                {{comp-list-item-desktop item=item}}
+                {{comp-list-item-desktop item=item isDesktop=isDesktop}}
 	      {{/each}}
 	    </tbody>
           </table>
         </div>
-      {{else}}
+      {{/if}}
+      {{#if isMobile}}
         <ul class="list-group hidden-md hidden-lg">
           {{#each item in model}}
-            {{comp-list-item-mobile item=item}}
+            {{comp-list-item-mobile item=item isMobile=isMobile}}
           {{/each}}
         </ul>
-      {{/unless}}
+      {{/if}}
     {{/if}}
   </div>
 </div>
