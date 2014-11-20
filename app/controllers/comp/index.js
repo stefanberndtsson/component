@@ -6,17 +6,6 @@ export default Ember.Controller.extend({
     isMobileBinding: 'controllers.application.isMobile',
     isDesktopBinding: 'controllers.application.isDesktop',
     loading: false,
-    pageArray: function() {
-	var pArray = [];
-	for(var i=0;i<this.get('model.meta.pagination.pages');i++) {
-	    var p = {page: i+1};
-	    if(this.get('model.meta.pagination.page') === i+1) {
-		p['active'] = true;
-	    }
-	    pArray.push(p);
-	}
-	return Ember.ArrayProxy.create({content: Ember.A(pArray)});
-    }.property('model.meta.pagination.pages', 'model.meta.pagination.page'),
     pageStart: function() {
 	var currentPage = this.get('model.meta.pagination.page');
 	var perPage = this.get('model.meta.pagination.per_page');

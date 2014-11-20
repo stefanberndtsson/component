@@ -13,61 +13,9 @@
     </div>
     {{#if model.meta.pagination.per_page}}
       {{#if isMobile}}
-        <div class="col-xs-12 hidden-md hidden-lg">
-          <ul class="pager">
-	    <li class="previous">
-	      {{#if model.meta.pagination.previous}}
-	        {{#link-to 'comp.index' (query-params page=model.meta.pagination.previous)}}
-	        Previous
-	        {{/link-to}}
-	      {{else}}
-	        <span>Previous</span>
-	      {{/if}}
-	    </li>
-	    <li class="next">
-	      {{#if model.meta.pagination.next}}
-	        {{#link-to 'comp.index' (query-params page=model.meta.pagination.next)}}
-	        Next
-	        {{/link-to}}
-	      {{else}}
-	        <span>Next</span>
-	      {{/if}}
-	    </li>
-          </ul>
-        </div>
+        {{pagination-mobile pagination=model.meta.pagination}}
       {{else}}
-        <div class="col-md-12 hidden-xs hidden-sm">
-          <ul class="pagination">
-	    {{#if model.meta.pagination.previous}}
-	      <li>
-	        {{#link-to 'comp.index' (query-params page=model.meta.pagination.previous)}}
-	        <span class="hidden-xs hidden-sm">&laquo;</span>
-	        {{/link-to}}
-	      </li>
-	    {{else}}
-	      <li class="disabled"><a>
-	        <span class="hidden-xs hidden-sm">&laquo;</span>
-	      </a></li>
-	    {{/if}}
-	    {{#each page in pageArray}}
-	      <li {{bind-attr class="page.active:active :hidden-xs :hidden-sm"}}>
-	        {{#link-to 'comp.index' (query-params page=page.page.page)}}{{page.page}}{{/link-to}}
-	      </li>
-	    {{/each}}
-	    <li></li>
-	    {{#if model.meta.pagination.next}}
-	      <li>
-	        {{#link-to 'comp.index' (query-params page=model.meta.pagination.next)}}
-	        <span class="hidden-xs hidden-sm">&raquo;</span>
-	        {{/link-to}}
-	      </li>
-	    {{else}}
-	      <li class="disabled"><a>
-	        <span class="hidden-xs hidden-sm">&raquo;</span>
-	      </a></li>
-	    {{/if}}
-          </ul>
-        </div>
+        {{pagination-desktop pagination=model.meta.pagination}}
       {{/if}}
       {{#if controllers.application.loading}}
         <div class="col-xs-12">
