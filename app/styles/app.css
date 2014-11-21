@@ -117,3 +117,8 @@ span.has-error {
 .navbar-right {
     margin-right: 0;
 }
+
+.pagination > li.spacer > a {
+    border-top: 0;
+    border-bottom: 0;
+}
