@@ -5,27 +5,5 @@ export default Ember.Controller.extend({
     queryParams: ['page', 'query'],
     isMobileBinding: 'controllers.application.isMobile',
     isDesktopBinding: 'controllers.application.isDesktop',
-    loading: false,
-    pageStart: function() {
-	var currentPage = this.get('model.meta.pagination.page');
-	var perPage = this.get('model.meta.pagination.per_page');
-	if(!perPage) { return 0; }
-	return ((currentPage-1) * perPage)+1;
-    }.property('model.meta.pagination.page', 'model.meta.pagination.per_page'),
-    pageEnd: function() {
-	var currentPage = this.get('model.meta.pagination.page');
-	var perPage = this.get('model.meta.pagination.per_page');
-	var total = this.get('model.meta.query.total');
-	if(!perPage) { return 0; }
-	var pageEnd = ((currentPage-1) * perPage)+perPage;
-	if(pageEnd > total) {
-	    return total;
-	} else {
-	    return pageEnd;
-	}
-    }.property('model.meta.pagination.page', 'model.meta.pagination.per_page', 'model.meta.query.total'),
-    singleResult: function() {
-	if(this.get('model.meta.query.total') === 1) { return true; }
-	return false;
-    }.property('model.meta.query.total'),
+    loading: false
 });

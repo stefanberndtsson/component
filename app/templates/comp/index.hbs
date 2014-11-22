@@ -22,10 +22,7 @@
           Loading...
         </div>
       {{else}}
-        <div class="col-xs-12">
-          Showing {{pageStart}} - {{pageEnd}} of {{model.meta.query.total}}
-          {{#if singleResult}}result{{else}}results{{/if}}
-        </div>
+        {{pagination-pager-data pagination=model.meta.pagination total=model.meta.query.total}}
       {{/if}}
     {{/if}}
     {{#if model}}
