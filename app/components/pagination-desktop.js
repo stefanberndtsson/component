@@ -15,13 +15,14 @@ export default Ember.Component.extend({
 	    }
 	    return Ember.ArrayProxy.create({content: Ember.A(pArray)});
 	} else {
+	    var pagePadding = 4;
 	    var tmpArray = [];
 	    var current_page = this.get('pagination.page') - 1;
 	    var max_page = this.get('pagination.pages') - 1;
 	    for(i=0;i<max_page+1;i++) {
-		if((i <= 1) ||
-		   ((i >= (current_page - 2)) && (i <= (current_page + 2))) ||
-		   (i >= (max_page - 1))) {
+		if((i <= (pagePadding-1)) ||
+		   ((i >= (current_page - pagePadding)) && (i <= (current_page + pagePadding))) ||
+		   (i >= (max_page - (pagePadding - 1)))) {
 		    p = {page: i+1};
 		    if(this.get('pagination.page') === i+1) {
 			p['active'] = true;
