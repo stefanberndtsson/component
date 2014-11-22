@@ -2,10 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     pageArray: function() {
+	var pagePadding = 4;
 	var pArray = [];
 	var i;
 	var p;
-	if(this.get('pagination.pages') < 10) {
+	if((4*pagePadding+1) > (this.get('pagination.pages') - 2)) {
 	    for(i=0;i<this.get('pagination.pages');i++) {
 		p = {page: i+1};
 		if(this.get('pagination.page') === i+1) {
@@ -15,7 +16,6 @@ export default Ember.Component.extend({
 	    }
 	    return Ember.ArrayProxy.create({content: Ember.A(pArray)});
 	} else {
-	    var pagePadding = 4;
 	    var tmpArray = [];
 	    var current_page = this.get('pagination.page') - 1;
 	    var max_page = this.get('pagination.pages') - 1;
