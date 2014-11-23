@@ -12,12 +12,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
     setupController: function(controller, model) {
 	controller.set('content', {});
-	controller.set('amounts', {});
 	controller.set('amountsSelection', model.amount);
 	controller.set('tagsSelection', model.tag);
-	model.amount.forEach(function(item) {
-	    controller.set('amounts.'+item.id, item);
-	});
     },
     actions: {
 	willTransition: function() {
