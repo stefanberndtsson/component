@@ -122,3 +122,20 @@ span.has-error {
     border-top: 0;
     border-bottom: 0;
 }
+
+.loader {
+    display: inline-block;
+    background-image: url(/img/spiffygif_20x20.gif);
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+.pager-data {
+    display: inline-block;
+    margin-left: 15px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+}

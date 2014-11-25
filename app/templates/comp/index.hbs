@@ -17,12 +17,9 @@
       {{else}}
         {{pagination-desktop pagination=model.meta.pagination isDesktop=isDesktop}}
       {{/if}}
+      {{pagination-pager-data pagination=model.meta.pagination total=model.meta.query.total}}
       {{#if controllers.application.loading}}
-        <div class="col-xs-12">
-          Loading...
-        </div>
-      {{else}}
-        {{pagination-pager-data pagination=model.meta.pagination total=model.meta.query.total}}
+        <div class="loader"></div>
       {{/if}}
     {{/if}}
     {{#if model}}
