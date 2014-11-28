@@ -9,6 +9,14 @@ export default Ember.Object.extend({
 	amount:		{ path: 'amounts'	},
 	tag:		{ path: 'tags'		}
     },
+    sessionHeaders: function() {
+	var session = this.container.lookup('simple-auth-session:main');
+	var headers = {};
+	if(session && session.get('isAuthenticated')) {
+	    headers["Authorization"] = "Token " + session.get('token');
+	}
+	return headers;
+    },
     findOne: function(name, id, params) {
 	var that = this;
 	return this.fetch(this.urlOne(name, id, params))
@@ -24,46 +32,34 @@ export default Ember.Object.extend({
 	    }, this.extractErrors);
     },
     fetch: function(url) {
-	var session = this.container.lookup('simple-auth-session:main');
-	var headers = {};
-	if(session && session.get('isAuthenticated')) {
-	    headers["Authorization"] = "Token " + session.get('token');
-	}
+	var that = this;
 	return Ember.$.ajax({
 	    url: url,
 	    method: 'get',
 	    crossDomain: true,
 	    type: 'json',
-	    headers: headers
+	    headers: that.sessionHeaders()
 	});
     },
     send: function(url, method, data) {
-	var session = this.container.lookup('simple-auth-session:main');
-	var headers = {};
-	if(session && session.get('isAuthenticated')) {
-	    headers["Authorization"] = "Token " + session.get('token');
-	}
+	var that = this;
 	return Ember.$.ajax({
 	    url: url,
 	    method: method,
 	    crossDomain: true,
 	    type: 'json',
 	    data: data,
-	    headers: headers
+	    headers: that.sessionHeaders()
 	});
     },
     sendDelete: function(url) {
-	var session = this.container.lookup('simple-auth-session:main');
-	var headers = {};
-	if(session && session.get('isAuthenticated')) {
-	    headers["Authorization"] = "Token " + session.get('token');
-	}
+	var that = this;
 	return Ember.$.ajax({
 	    url: url,
 	    method: 'delete',
 	    crossDomain: true,
 	    type: 'json',
-	    headers: headers
+	    headers: that.sessionHeaders()
 	});
     },
     endpoint: function(name) {
