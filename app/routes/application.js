@@ -11,7 +11,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	});
     },
     setupController: function(controller, model) {
-	controller.set('content', {});
 	controller.set('amountsSelection', model.amount);
 	controller.set('tagsSelection', model.tag);
     },
