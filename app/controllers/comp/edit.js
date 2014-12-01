@@ -1,6 +1,8 @@
 import CompItemController from '../comp/item';
 
 export default CompItemController.extend({
+    amountsSelectionBinding: 'controllers.application.amountsSelection',
+    tagsSelectionBinding: 'controllers.application.tagsSelection',
     actions: {
 	addTag: function(data) {
 	    var lower = data.toLowerCase();

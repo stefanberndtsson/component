@@ -2,8 +2,6 @@ import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
     needs: ['application'],
-    tagsSelectionBinding: 'controllers.application.tagsSelection',
-    amountsSelectionBinding: 'controllers.application.amountsSelection',
     isMobileBinding: 'controllers.application.isMobile',
     isDesktopBinding: 'controllers.application.isDesktop',
     needsValue: function() {
