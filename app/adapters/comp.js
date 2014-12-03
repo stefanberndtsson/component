@@ -100,14 +100,18 @@ export default Ember.Object.extend({
     },
     extractOne: function(name, data) {
 	var singularName = this.singular(name);
-	data[singularName].meta = data.meta;
+	if(data.meta) {
+	    data[singularName].meta = data.meta;
+	}
 	data[singularName].errors = this.extractErrors(data);
 	return data[singularName];
     },
     extractMany: function(name, data) {
 	var pluralName = this.plural(name);
 	var list = data[pluralName];
-	list.meta = data.meta;
+	if(data.meta) {
+	    list.meta = data.meta;
+	}
 	list.errors = this.extractErrors(data);
 	return list;
     },
