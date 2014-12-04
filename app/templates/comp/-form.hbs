@@ -63,7 +63,7 @@
   <div class="col-xs-12" style="margin-top: 3px;">
     <span class="label label-default" style="visibility: hidden; width: 0; padding-left: 0; padding-right: 0;">&nbsp;</span>
     {{#each tag in model.tags}}
-    <span class="label label-default"><span class="glyphicon glyphicon-remove" {{action 'removeTag' tag}}></span> {{tag}}</span>
+    <span class="label label-default"><span class="glyphicon glyphicon-remove tag-remove" {{action 'removeTag' tag}}></span> {{tag}}</span>
     {{/each}}
   </div>
 </div>

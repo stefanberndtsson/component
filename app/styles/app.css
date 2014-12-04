@@ -139,3 +139,7 @@ span.has-error {
     line-height: 20px;
     vertical-align: middle;
 }
+
+.tag-remove {
+    cursor: pointer;
+}
