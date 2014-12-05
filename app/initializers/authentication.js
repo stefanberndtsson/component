@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import Base from 'simple-auth/authenticators/base';
-import ENV from '../config/environment';
+import ENV from 'component/config/environment';
 
 var CustomAuthenticator = Base.extend({
     restore: function(properties) {

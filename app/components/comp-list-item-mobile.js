@@ -1,4 +1,4 @@
-import CompDesktopComponent from '../components/comp-list-item-desktop';
+import CompDesktopComponent from 'component/components/comp-list-item-desktop';
 
 export default CompDesktopComponent.extend({
     tagName: 'li',

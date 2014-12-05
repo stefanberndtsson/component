@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import CompItemController from '../comp/item';
+import CompItemController from 'component/controllers/comp/item';
 
 export default CompItemController.extend({
     hasFiles: function() {

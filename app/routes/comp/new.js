@@ -1,4 +1,4 @@
-import CompEditRoute from '../comp/edit';
+import CompEditRoute from 'component/routes/comp/edit';
 
 export default CompEditRoute.extend({
     model: function() {

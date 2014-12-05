@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ENV from '../config/environment';
+import ENV from 'component/config/environment';
 
 export default Ember.Handlebars.makeBoundHelper(function(id, name){
     var escapedName = Ember.Handlebars.Utils.escapeExpression(name);

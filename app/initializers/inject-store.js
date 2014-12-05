@@ -1,4 +1,4 @@
-import Store from '../models/store';
+import Store from 'component/models/store';
 
 export default {
   name: 'inject-store',
