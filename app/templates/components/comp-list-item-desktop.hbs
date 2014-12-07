@@ -5,7 +5,7 @@
 <td>{{tag-labels tags=item.tags}}</td>
 <td>
   {{#if item.files.datasheets}}
-    {{pdf-link item.files.datasheets.0.id}}
+    {{file-link file=item.files.datasheets type='pdf'}}
   {{/if}}
 </td>
 {{/if}}

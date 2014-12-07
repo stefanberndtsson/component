@@ -53,7 +53,7 @@
 		{{#each file in files.datasheets}}
 		<div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
 		  <div class="thumbnail-asset">
-		  {{image-link file.id file.name 240}}
+		  {{file-link file=file type='image' size=240}}
 		  {{#if session.isAuthenticated}}
 		  <span {{action 'removeAsset' model file.id}}
                         class="remove-asset glyphicon glyphicon-remove"></span>
@@ -73,7 +73,7 @@
 	  <tbody>
 	    {{#each file in files.documents}}
 	    <tr>
-	      <td>{{file-link file.id file.name}}</td>
+	      <td>{{file-link file=file}}</td>
 	      <td>
 		{{#if session.isAuthenticated}}
 		<span {{action 'removeAsset' model file.id}}
@@ -95,7 +95,7 @@
 		{{#each file in files.images}}
 		<div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
 		  <div class="thumbnail-asset">
-		    {{image-link file.id file.name 160}}
+		    {{file-link file=file type='image' size=160}}
 		    {{#if session.isAuthenticated}}
 		    <span {{action 'removeAsset' model file.id}}
                           class="remove-asset glyphicon glyphicon-remove"></span>
