@@ -1,9 +1,6 @@
 {{#if typeFile}}
   {{name}}
 {{/if}}
-{{#if typePDF}}
-  <img class="pdf-image" src="/img/pdf-file-24.png"/>
-{{/if}}
 {{#if typeImage}}
-  <img class="image-link-thumbnail" {{bind-attr src=imageURL}}/>
+  <img {{bind-attr class=imageClass src=imageURL}}/>
 {{/if}}
