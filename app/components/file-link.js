@@ -8,7 +8,6 @@ export default Ember.Component.extend({
     type: 'file',
     computedFile: function() {
 	if(this.get('file').length) {
-	    console.log(this.get('file').length);
 	    return this.get('file')[0];
 	} else {
 	    return this.get('file');
