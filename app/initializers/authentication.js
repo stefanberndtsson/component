@@ -52,7 +52,6 @@ var CustomAuthenticator = Base.extend({
 
 export var initialize = function(container) {
     container.register('authenticator:custom', CustomAuthenticator);
-
 };
 
 AuthenticatedRouteMixin.reopen({

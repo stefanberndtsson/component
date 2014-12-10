@@ -2,7 +2,6 @@ import Ember from 'ember';
 import ENV from 'component/config/environment';
 
 export default Ember.FileField.extend({
-    url: '',
     multiple: false,
     filesDidChange: (function() {
 	var that = this;
