@@ -6,9 +6,9 @@
       <li class="pull-left">{{#link-to 'comp.new'}}Add{{/link-to}}</li>
       {{/if}}
       {{#if session.isAuthenticated}}
-      <li class="pull-right"><a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a></li>
+      <li class="navbar-item-right"><a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a></li>
       {{else}}
-      <li class="pull-right">{{link-to "Login" 'login'}}</li>
+      <li class="navbar-item-right">{{link-to "Login" 'login'}}</li>
       {{/if}}
     </ul>
   </div>
