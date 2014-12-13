@@ -273,6 +273,10 @@ li.navbar-item-right {
     font-weight: bold;
 }
 
+.info-box .glyphicon-remove {
+    cursor: pointer;
+}
+
 @media (min-width: 1200px) and (max-width: 1370px) {
     .info-box-button-list .list-btn {
 	min-width: 100px;
