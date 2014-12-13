@@ -12,11 +12,9 @@ export default Ember.Route.extend({
 	upload: function(fileUploadId) {
 	    Ember.$('#upload'+fileUploadId).click();
 	},
-	removeAsset: function(component, assetId) {
+	removeAsset: function(componentId, assetId) {
 	    var store = this.store;
 	    var controller = this.get('controller');
-	    var model = controller.get('model');
-	    var componentId = model.id;
 	    store.destroy('asset_data', assetId).then(function() {
 		store.find('component', componentId).then(function(reloadedModel) {
 		    controller.set('model', reloadedModel);

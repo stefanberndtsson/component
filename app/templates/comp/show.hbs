@@ -41,64 +41,15 @@
   {{#if hasFiles}}
     <div class="col-md-6 col-lg-6">
       {{#if files.datasheets}}
-        <div class="info-box">
-          <div class="row info-box-header">
-            <h3 class="col-xs-12">Datasheets</h3>
-          </div>
-          <div class="row info-box-body">
-            {{#each file in files.datasheets}}
-	      <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
-	        <div class="thumbnail-asset">
-	          {{file-link file=file type='image' size=240}}
-	          {{#if session.isAuthenticated}}
-		    <span {{action 'removeAsset' model file.id}}
-                      class="remove-asset glyphicon glyphicon-remove"></span>
-	          {{/if}}
-	        </div>
-	      </div>
-            {{/each}}
-          </div>
-        </div>
+        {{file-box componentId=model.id name='Datasheets' files=files.datasheets type='thumbnails' imageSize=240}}
       {{/if}}
       
       {{#if files.documents}}
-        <div class="info-box">
-          <div class="row info-box-header">
-            <h3 class="col-xs-12">Documents</h3>
-          </div>
-          <div class="row info-box-body">
-            {{#each file in files.documents}}
-	      <div class="col-xs-12 info-box-line">
-	        {{file-link file=file}}
-	        {{#if session.isAuthenticated}}
-		  <span {{action 'removeAsset' model file.id}}
-                    class="pull-right glyphicon glyphicon-remove"></span>
-	        {{/if}}
-	      </div>
-            {{/each}}
-          </div>
-        </div>
+        {{file-box componentId=model.id name='Documents' files=files.documents type='list'}}
       {{/if}}
       
       {{#if files.images}}
-        <div class="info-box">
-          <div class="row info-box-header">
-            <h3 class="col-xs-12">Images</h3>
-          </div>
-          <div class="row info-box-body">
-            {{#each file in files.images}}
-	      <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
-		<div class="thumbnail-asset">
-		  {{file-link file=file type='image' size=160}}
-		  {{#if session.isAuthenticated}}
-		    <span {{action 'removeAsset' model file.id}}
-                      class="remove-asset glyphicon glyphicon-remove"></span>
-		  {{/if}}
-		</div>
-	      </div>
-            {{/each}}
-          </div>
-        </div>
+        {{file-box componentId=model.id name='Images' files=files.images type='thumbnails' imageSize=160}}
       {{/if}}
     </div>
   {{/if}}
