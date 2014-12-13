@@ -1,114 +1,105 @@
 <div class="container-fluid">
   <div class="col-md-6 col-lg-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
+    <div class="info-box">
+      <div class="row info-box-header">
+	<h3 class="col-xs-12">{{name}}</h3>
 	{{#if session.isAuthenticated}}
-	<div class="panel-title pull-right">
-	  {{#link-to 'comp.edit' id classBinding=":btn :btn-primary"}}Edit{{/link-to}}
+	<div class="info-box-header-button">
+	  {{#link-to 'comp.edit' id classBinding=":btn :btn-primary"}}<span>Edit</span>{{/link-to}}
 	</div>
 	{{/if}}
-	<div class="panel-title"><h2>{{name}}</h2></div>
       </div>
-      <div class="panel-body">
-	<p class="lead">{{summary}}</p>
-	<div>{{markdown-text description}}</div>
-	<p>
-	  <strong>Amount: </strong>{{amount}}
-	  {{#if spares}}
-	  (+spares)
+      <div class="row info-box-body">
+        <div class="info-box-content">
+	  <p class="lead">{{summary}}</p>
+	  <div>{{markdown-text description}}</div>
+	  <p>
+	    <strong>Amount: </strong>{{amount}}
+	    {{#if spares}}
+	      (+spares)
+	    {{/if}}
+	  </p>
+          {{tag-labels tags=tags}}
+	  {{#if session.isAuthenticated}}
+	    <div class="container-fluid">&nbsp;</div>
+	    <nav class="navbar navbar-default">
+	      <div class="navbar-header">
+	        <a href="javascript:void(0);" class="navbar-brand">Add</a>
+	      </div>
+	      <button type="button" {{action 'upload' 'Datasheet'}} class="btn btn-default navbar-btn">Datasheet</button>
+	      <button type="button" {{action 'upload' 'Document'}} class="btn btn-default navbar-btn">Document</button>
+	      <button type="button" {{action 'upload' 'Image'}} class="btn btn-default navbar-btn">Image</button>
+	    </nav>
+	    {{file-upload componentId=id id="uploadDatasheet" class="hide-element" dataType="Datasheet"}}
+	    {{file-upload componentId=id id="uploadDocument" class="hide-element" dataType="Document"}}
+	    {{file-upload componentId=id id="uploadImage" class="hide-element" dataType="Image"}}
 	  {{/if}}
-	</p>
-        {{tag-labels tags=tags}}
-	{{#if session.isAuthenticated}}
-	<div class="container-fluid">&nbsp;</div>
-	<nav class="navbar navbar-default">
-	  <div class="navbar-header">
-	    <a href="javascript:void(0);" class="navbar-brand">Add</a>
-	  </div>
-	  <button type="button" {{action 'upload' 'Datasheet'}} class="btn btn-default navbar-btn">Datasheet</button>
-	  <button type="button" {{action 'upload' 'Document'}} class="btn btn-default navbar-btn">Document</button>
-	  <button type="button" {{action 'upload' 'Image'}} class="btn btn-default navbar-btn">Image</button>
-	</nav>
-	{{file-upload componentId=id id="uploadDatasheet" class="hide-element" dataType="Datasheet"}}
-	{{file-upload componentId=id id="uploadDocument" class="hide-element" dataType="Document"}}
-	{{file-upload componentId=id id="uploadImage" class="hide-element" dataType="Image"}}
-	{{/if}}
+        </div>
       </div>
     </div>
   </div>
   {{#if hasFiles}}
-  <div class="col-md-6 col-lg-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-	<div class="panel-title"><h2>Files</h2></div>
-      </div>
-      <div class="panel-body">
-	{{#if files.datasheets}}
-	<table class="table">
-	  <thead>
-	    <tr><th>Datasheets</th></tr>
-	  </thead>
-	  <tbody>
-	    <tr><td>
-		{{#each file in files.datasheets}}
-		<div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
-		  <div class="thumbnail-asset">
-		  {{file-link file=file type='image' size=240}}
-		  {{#if session.isAuthenticated}}
-		  <span {{action 'removeAsset' model file.id}}
-                        class="remove-asset glyphicon glyphicon-remove"></span>
-		  {{/if}}
-		  </div>
-		</div>
-		{{/each}}
-	    </td></tr>
-	  </tbody>
-	</table>
-	{{/if}}
-	{{#if files.documents}}
-	<table class="table">
-	  <thead>
-	    <tr><th>Documents</th><th></th></tr>
-	  </thead>
-	  <tbody>
-	    {{#each file in files.documents}}
-	    <tr>
-	      <td>{{file-link file=file}}</td>
-	      <td>
-		{{#if session.isAuthenticated}}
-		<span {{action 'removeAsset' model file.id}}
-                      class="pull-right glyphicon glyphicon-remove"></span>
-		{{/if}}
-	      </td>
-	    </tr>
-	    {{/each}}
-	  </tbody>
-	</table>
-	{{/if}}
-	{{#if files.images}}
-	<table class="table">
-	  <thead>
-	    <tr><th>Images</th></tr>
-	  </thead>
-	  <tbody>
-	    <tr><td>
-		{{#each file in files.images}}
-		<div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
-		  <div class="thumbnail-asset">
-		    {{file-link file=file type='image' size=160}}
-		    {{#if session.isAuthenticated}}
+    <div class="col-md-6 col-lg-6">
+      {{#if files.datasheets}}
+        <div class="info-box">
+          <div class="row info-box-header">
+            <h3 class="col-xs-12">Datasheets</h3>
+          </div>
+          <div class="row info-box-body">
+            {{#each file in files.datasheets}}
+	      <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
+	        <div class="thumbnail-asset">
+	          {{file-link file=file type='image' size=240}}
+	          {{#if session.isAuthenticated}}
 		    <span {{action 'removeAsset' model file.id}}
-                          class="remove-asset glyphicon glyphicon-remove"></span>
-		    {{/if}}
-		  </div>
+                      class="remove-asset glyphicon glyphicon-remove"></span>
+	          {{/if}}
+	        </div>
+	      </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+      
+      {{#if files.documents}}
+        <div class="info-box">
+          <div class="row info-box-header">
+            <h3 class="col-xs-12">Documents</h3>
+          </div>
+          <div class="row info-box-body">
+            {{#each file in files.documents}}
+	      <div class="col-xs-12 info-box-line">
+	        {{file-link file=file}}
+	        {{#if session.isAuthenticated}}
+		  <span {{action 'removeAsset' model file.id}}
+                    class="pull-right glyphicon glyphicon-remove"></span>
+	        {{/if}}
+	      </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+      
+      {{#if files.images}}
+        <div class="info-box">
+          <div class="row info-box-header">
+            <h3 class="col-xs-12">Images</h3>
+          </div>
+          <div class="row info-box-body">
+            {{#each file in files.images}}
+	      <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
+		<div class="thumbnail-asset">
+		  {{file-link file=file type='image' size=160}}
+		  {{#if session.isAuthenticated}}
+		    <span {{action 'removeAsset' model file.id}}
+                      class="remove-asset glyphicon glyphicon-remove"></span>
+		  {{/if}}
 		</div>
-		{{/each}}
-	    </td></tr>
-	  </tbody>
-	</table>
-	{{/if}}
-      </div>
+	      </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
     </div>
-  </div>
   {{/if}}
 </div>
