@@ -278,12 +278,6 @@ li.navbar-item-right {
     cursor: pointer;
 }
 
-@media (min-width: 1200px) and (max-width: 1370px) {
-    .info-box-button-list .list-btn {
-	min-width: 100px;
-    }    
-}
-
 @media (max-width: 500px) {
     .info-box-button-list .list-btn {
 	min-width: 80px;
