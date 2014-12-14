@@ -9,8 +9,8 @@ export default Ember.FileField.extend({
 	if(Ember.isEmpty(files)) {
 	    return;
 	}
-	var controller = this.get('targetObject');
-	var store = this.get('targetObject.store');
+	var targetComponent = this.get('targetObject');
+	var store = targetComponent.get('targetObject.store');
 	var componentId = this.get('componentId');
 	var dataType = this.get('dataType');
 	var uploadUrl = ENV.APP.fileURL;
@@ -35,7 +35,7 @@ export default Ember.FileField.extend({
 	    that.set('value', '');
 	    preFilters.remove(authPrefilter);
 	    store.find('component', componentId).then(function(reloadedModel) {
-		controller.set('model', reloadedModel);
+		targetComponent.set('model', reloadedModel);
 	    });
 	});
 

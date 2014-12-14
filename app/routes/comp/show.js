@@ -9,9 +9,6 @@ export default Ember.Route.extend({
 	this.controllerFor('application').set('pageTitle', model.name);
     },
     actions: {
-	upload: function(fileUploadId) {
-	    Ember.$('#upload'+fileUploadId).click();
-	},
 	removeAsset: function(componentId, assetId) {
 	    var store = this.store;
 	    var controller = this.get('controller');

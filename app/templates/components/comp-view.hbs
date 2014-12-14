@@ -1,0 +1,44 @@
+<div class="info-box">
+  <div class="row info-box-header">
+    <h3 class="col-xs-12">{{headerPrefix}}{{model.name}}</h3>
+    {{#unless preview}}
+      {{#if session.isAuthenticated}}
+        <div class="info-box-header-button">
+	  {{#link-to 'comp.edit' model.id classBinding=":btn :btn-primary"}}<span>Edit</span>{{/link-to}}
+        </div>
+      {{/if}}
+    {{/unless}}
+  </div>
+  <div class="row info-box-body">
+    <div class="info-box-content">
+      <p class="lead">{{model.summary}}</p>
+      <div>{{markdown-text model.description}}</div>
+      <p>
+	<strong>Amount: </strong>{{amount}}
+	{{#if model.spares}}
+	  (+spares)
+	{{/if}}
+      </p>
+      {{#if preview}}
+        {{tag-labels tags=model.tags unlinked=true}}
+      {{else}}
+        {{tag-labels tags=model.tags}}
+      {{/if}}
+      {{#unless preview}}
+        {{#if session.isAuthenticated}}
+          <div class="row info-box-button-list">
+            <div class="col-xs-12 button-container">
+              <div class="list-header">Add</div>
+	      <button type="button" {{action 'upload' 'Image'}} class="btn btn-primary list-btn">Image</button>
+	      <button type="button" {{action 'upload' 'Document'}} class="btn btn-primary list-btn">Document</button>
+	      <button type="button" {{action 'upload' 'Datasheet'}} class="btn btn-primary list-btn">Datasheet</button>
+	      {{file-upload componentId=model.id id="uploadDatasheet" class="hide-element" dataType="Datasheet"}}
+	      {{file-upload componentId=model.id id="uploadDocument" class="hide-element" dataType="Document"}}
+	      {{file-upload componentId=model.id id="uploadImage" class="hide-element" dataType="Image"}}
+            </div>
+          </div>
+        {{/if}}
+      {{/unless}}
+    </div>
+  </div>
+</div>

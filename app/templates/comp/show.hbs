@@ -1,41 +1,6 @@
 <div class="container">
   <div class="col-md-6 col-lg-6">
-    <div class="info-box">
-      <div class="row info-box-header">
-	<h3 class="col-xs-12">{{name}}</h3>
-	{{#if session.isAuthenticated}}
-	<div class="info-box-header-button">
-	  {{#link-to 'comp.edit' id classBinding=":btn :btn-primary"}}<span>Edit</span>{{/link-to}}
-	</div>
-	{{/if}}
-      </div>
-      <div class="row info-box-body">
-        <div class="info-box-content">
-	  <p class="lead">{{summary}}</p>
-	  <div>{{markdown-text description}}</div>
-	  <p>
-	    <strong>Amount: </strong>{{amount}}
-	    {{#if spares}}
-	      (+spares)
-	    {{/if}}
-	  </p>
-          {{tag-labels tags=tags}}
-	  {{#if session.isAuthenticated}}
-            <div class="row info-box-button-list">
-              <div class="col-xs-12 button-container">
-                <div class="list-header">Add</div>
-	        <button type="button" {{action 'upload' 'Image'}} class="btn btn-primary list-btn">Image</button>
-	        <button type="button" {{action 'upload' 'Document'}} class="btn btn-primary list-btn">Document</button>
-	        <button type="button" {{action 'upload' 'Datasheet'}} class="btn btn-primary list-btn">Datasheet</button>
-	        {{file-upload componentId=id id="uploadDatasheet" class="hide-element" dataType="Datasheet"}}
-	        {{file-upload componentId=id id="uploadDocument" class="hide-element" dataType="Document"}}
-	        {{file-upload componentId=id id="uploadImage" class="hide-element" dataType="Image"}}
-              </div>
-            </div>
-	  {{/if}}
-        </div>
-      </div>
-    </div>
+    {{comp-view model=model}}
   </div>
   {{#if hasFiles}}
     <div class="col-md-6 col-lg-6">

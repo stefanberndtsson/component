@@ -1,15 +1,6 @@
-<div class="container-fluid">
-  <div class="col-md-6 col-lg-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-	<div class="panel-title"><h2>Edit: {{name}}</h2></div>
-      </div>
-      <div class="panel-body">
-	{{partial 'comp/form'}}
-      </div>
-    </div>
-  </div>
-  <div class="hidden-xs hidden-sm">
-    {{partial 'comp/preview'}}
+<div class="container">
+  {{comp-form model=model}}
+  <div class="col-md-6 col-lg-6 hidden-xs hidden-sm">
+    {{comp-view model=model type='preview'}}
   </div>
 </div>
