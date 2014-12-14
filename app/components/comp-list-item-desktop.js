@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'tr',
+    classNames: ['info-box-line'],
     amount: function() {
 	var amount = this.get('item.amount');
 	if(!amount) {

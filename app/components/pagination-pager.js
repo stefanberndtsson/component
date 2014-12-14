@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     pageArray: function() {
-	var pagePadding = 4;
+	var pagePadding = 3;
 	var pArray = [];
 	var i;
 	var p;

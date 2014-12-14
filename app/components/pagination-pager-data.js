@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    tagName: 'span',
-    classNames: ['pager-data'],
+    tagName: 'h3',
+    classNames: [],
     pageStart: function() {
 	var currentPage = this.get('pagination.page');
 	var perPage = this.get('pagination.per_page');

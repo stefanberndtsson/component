@@ -1,2 +1,7 @@
+{{#if isDesktop}}
 Showing {{pageStart}} - {{pageEnd}} of {{total}}
 {{#if singleResult}}result{{else}}results{{/if}}
+{{/if}}
+{{#if isMobile}}
+{{pageStart}} - {{pageEnd}} of {{total}}
+{{/if}}

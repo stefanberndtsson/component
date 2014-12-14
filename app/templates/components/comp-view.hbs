@@ -3,7 +3,7 @@
     <h3 class="col-xs-12">{{headerPrefix}}{{model.name}}</h3>
     {{#unless preview}}
       {{#if session.isAuthenticated}}
-        <div class="info-box-header-button">
+        <div class="header-button header-button-right">
 	  {{#link-to 'comp.edit' model.id classBinding=":btn :btn-primary"}}<span>Edit</span>{{/link-to}}
         </div>
       {{/if}}
