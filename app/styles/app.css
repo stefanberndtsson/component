@@ -278,8 +278,34 @@ li.navbar-item-right {
     cursor: pointer;
 }
 
+.container {
+    padding-right: 0;
+}
+
 @media (max-width: 500px) {
     .info-box-button-list .list-btn {
 	min-width: 80px;
     }    
+}
+
+@media (max-width: 375px) {
+    .info-box-button-list .list-btn {
+	min-width: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+    }
+    
+    .info-box-button-list .list-header {
+	padding-right: 5px;
+    }
+}
+
+@media (max-width: 310px) {
+    .container {
+	padding-left: 0;
+    }
+
+    .info-box {
+	margin-right: 0;
+    }
 }

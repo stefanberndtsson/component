@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import ENV from 'component/config/environment';
+
 
 export default Ember.View.extend({
     didInsertElement: function() {
@@ -7,6 +9,9 @@ export default Ember.View.extend({
         var that = this;
         Ember.$(window).on('resize', function() {
             that.setBsLevel(controller);
+	    if(ENV.environment === "development") {
+		controller.set('innerWidth', window.innerWidth);
+	    }
         });
         if(!prevLevel) { that.setBsLevel(controller); }
     },
