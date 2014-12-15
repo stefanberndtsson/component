@@ -32,6 +32,9 @@ export default Ember.Component.extend({
     actions: {
 	upload: function(fileUploadId) {
 	    Ember.$('#upload'+fileUploadId).click();
+	},
+	refreshModel: function(componentId) {
+	    this.triggerAction({action: 'refreshModel', actionContext: componentId});
 	}
     }
 });

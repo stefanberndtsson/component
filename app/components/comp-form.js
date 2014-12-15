@@ -29,8 +29,7 @@ export default Ember.Component.extend({
     }.property('targetObject.error'),
     actions: {
 	saveComponent: function() {
-	    var controller = this.get('targetObject');
-	    controller.send('saveComponent', this.get('model'));
+	    this.triggerAction({action: 'saveComponent', actionContext: this.get('model')});
 	},
 	addTag: function(data) {
 	    var newTags = [];

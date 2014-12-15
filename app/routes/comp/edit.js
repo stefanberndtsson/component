@@ -15,9 +15,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	    var that = this;
 	    this.store.save('component', component).then(function(newModel) {
 		that.controller.set('model', newModel);
-		that.store.find('tag').then(function(tags) {
-		    that.controllerFor('application').set('tagsSelection', tags);
-		});
+		that.send('refreshTags');
 		that.transitionTo('comp.show', newModel.id);
 	    },function(reason) {
 		if(reason.status === 401) {

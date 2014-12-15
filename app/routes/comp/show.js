@@ -9,13 +9,16 @@ export default Ember.Route.extend({
 	this.controllerFor('application').set('pageTitle', model.name);
     },
     actions: {
-	removeAsset: function(componentId, assetId) {
-	    var store = this.store;
-	    var controller = this.get('controller');
-	    store.destroy('asset_data', assetId).then(function() {
-		store.find('component', componentId).then(function(reloadedModel) {
-		    controller.set('model', reloadedModel);
-		});
+	removeAsset: function(actionData) {
+	    var that = this;
+	    this.store.destroy('asset_data', actionData.assetId).then(function() {
+		that.send('refreshModel', actionData.componentId);
+	    });
+	},
+	refreshModel: function(componentId) {
+	    var that = this;
+	    this.store.find('component', componentId).then(function(reloadedModel) {
+		that.controller.set('model', reloadedModel);
 	    });
 	}
     }

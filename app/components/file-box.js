@@ -19,7 +19,7 @@ export default Ember.Component.extend({
     }.property(''),
     actions: {
 	removeAsset: function(componentId, assetId) {
-	    this.get('targetObject').send('removeAsset', componentId, assetId);
+	    this.triggerAction({action: 'removeAsset', actionContext: {componentId: componentId, assetId: assetId}});
 	}
     }
 });

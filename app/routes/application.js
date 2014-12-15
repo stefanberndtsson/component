@@ -26,6 +26,12 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	},
 	sessionAuthenticationFailed: function(error) {
 	    this.controllerFor('login').set('error', error);
+	},
+	refreshTags: function() {
+	    var that = this;
+	    this.store.find('tag').then(function(tags) {
+		that.controller.set('tagsSelection', tags);
+	    });
 	}
     }
 });
