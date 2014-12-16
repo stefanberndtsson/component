@@ -1,0 +1,305 @@
+.info-box {
+    background-color: @dark;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    box-shadow: 0px 7px 14px -4px @shadow;
+
+    @media (max-width: 310px) {
+	margin-right: 0;
+    }
+
+    .glyphicon-remove {
+        cursor: pointer;
+    }
+
+    .info-box-header {
+	position: relative;
+	background-color: @dark;
+	color: white;
+
+	h3 {
+	    margin-top: 10px;
+	}
+
+	.header-center {
+	    text-align: center;
+	}
+
+	.header-button-right .btn {
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    bottom: 0;
+	    border-radius: 0;
+	    font-weight: bold;
+	}
+
+	.header-button-left .btn {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    bottom: 0;
+	    border-radius: 0;
+	    font-weight: bold;
+	}
+
+	.header-button .btn span {
+	    position: relative;
+	    display: block;
+	    line-height: 32px;
+	}
+
+	.loader {
+	    position: absolute;
+	    right: 0;
+	    top: 10px;
+	    bottom: 0;
+	}
+    }
+
+    .info-box-body {
+	background-color: @light;
+	padding-top: 15px;
+	padding-bottom: 15px;
+
+	.info-box-content {
+	    padding: 0 15px;
+
+	    .navbar {
+		margin-bottom: 0;
+
+		.navbar-brand {
+		    padding-left: 0;
+		}
+	    }
+	}
+
+	.info-box-table {
+	    padding: 0;
+	    margin-bottom: -15px;
+
+	    table {
+		margin-bottom: 0;
+	    }
+	}
+
+	.info-box-line-header {
+	    margin-bottom: 0 !important;
+	}
+
+	tr.info-box-line-header th {
+	    padding-left: 15px;
+	}
+
+	tr.info-box-line td {
+	    padding: 0;
+	    vertical-align: middle;
+	    padding-left: 15px;
+	    border: 0;
+	    & > a {
+		padding-left: 0;
+	    }
+	}
+
+	.info-box-line {
+	    position: relative;
+	    padding: 0;
+
+	    &:first-of-type {
+		margin-top: -15px;
+	    }
+
+	    &:last-of-type {
+		margin-bottom: -15px;
+	    }
+
+	    &:nth-child(odd) {
+		background-color: @light;
+	    }
+
+	    &:nth-child(even) {
+		background-color: @zebra;
+	    }
+
+	    & > a {
+		display: block;
+		padding: 15px 15px;
+	    }
+
+	    & > td > a {
+		display: block;
+		padding: 15px 15px;
+	    }
+
+	    & > td > span {
+		position: relative;
+		top: -2px;
+	    }
+
+	    span.glyphicon {
+		position: absolute;
+		right: 0;
+		display: inline-block;
+		padding: 15px 15px;
+	    }
+
+	}
+
+	.info-box-list-item {
+	    &:first-of-type {
+		margin-top: -15px;
+	    }
+
+	    &:last-of-type {
+		margin-bottom: -15px;
+	    }
+	}
+    }
+
+    .info-box-query {
+	background-color: @zebra;
+	padding-top: 15px;
+    }
+
+    .info-box-pagination {
+	position: relative;
+	background-color: @zebra;
+	color: white;
+	height: 46px;
+
+	.pages {
+	    .spacer {
+		display: inline-block;
+		line-height: 32px;
+		background-color: @zebra;
+
+		.btn {
+		    font-weight: bold;
+		    height: 46px;
+		    line-height: 32px;
+		    min-width: 46px;
+		    border: 0;
+		    border-radius: 0;
+		    color: black;
+		}
+	    }
+	    
+	    .page {
+		display: inline-block;
+		line-height: 32px;
+		background-color: @light;
+
+		.btn {
+		    font-weight: bold;
+		    height: 46px;
+		    line-height: 32px;
+		    min-width: 46px;
+		    border: 0;
+		    border-radius: 0;
+
+		    &.active,&:active {
+			box-shadow: none;
+		    }
+		}
+	    }
+	}
+
+	.pages-center {
+	    text-align: center;
+	}
+
+	.pages-title {
+	    background-color: @dark;
+
+	    h3 {
+		display: inline-block;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	    }
+	}
+
+	.page-button-right .btn {
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    bottom: 0;
+	    border-radius: 0;
+	    font-weight: bold;
+	}
+
+	.page-button-left .btn {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    bottom: 0;
+	    border-radius: 0;
+	    font-weight: bold;
+	}
+
+	.page-button {
+	    .btn.disabled {
+		opacity: 1;
+		color: @disabled-button-fg;
+		background-color: @disabled-button-bg;
+		border: 0;
+	    }
+	    .btn span {
+		position: relative;
+		display: block;
+		line-height: 32px;
+	    }
+	}
+    }
+
+    .info-box-button-list {
+	background-color: @zebra;
+	position: relative;
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: -15px;
+	margin-right: -15px;
+	margin-bottom: -15px;
+	margin-top: 20px;
+	height: 46px;
+
+	.button-container {
+	    padding-right: 0;
+	}
+
+	.list-header {
+	    display: inline-block;
+	    padding: 15px;
+	    padding-left: 0;
+	    font-size: 18px;
+	    line-height: 18px;
+	    height: 46px;
+	    color: @dark;
+
+	    @media (max-width: 375px) {
+		padding-right: 5px;
+	    }
+	}
+
+	.list-btn {
+	    border-radius: 0;
+	    border: 0;
+	    float: right;
+	    height: 46px;
+	    min-width: 120px;
+	    margin-right: 1px;
+	    font-weight: bold;
+
+	    @media (max-width: 500px) {
+		min-width: 80px;
+	    }
+
+	    @media (max-width: 375px) {
+		min-width: 0px;
+		padding-left: 5px;
+		padding-right: 5px;
+	    }
+	}
+    }
+}

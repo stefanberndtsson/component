@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'li',
-    classNames: ['list-group-item', 'list-group-component', 'info-box-list-item'],
+    classNames: ['list-group-component', 'info-box-list-item'],
     amount: function() {
 	var amount = this.get('item.amount');
 	if(!amount) {
@@ -10,7 +10,7 @@ export default Ember.Component.extend({
 	}
 
 	if(amount === "Fixed") {
-	    return this.get('item.amount_value');
+	    return this.get('item.amount_value') + " pcs";
 	} else {
 	    return amount;
 	}
