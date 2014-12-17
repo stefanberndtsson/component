@@ -36,7 +36,7 @@ var CustomAuthenticator = Base.extend({
 			name: response.user.name
 		    });
 		});
-	    }, function(xhr, status, error) {
+	    }, function(xhr) {
 		Ember.run(function() {
 		    reject(xhr.responseJSON.error);
 		});

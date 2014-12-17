@@ -4,7 +4,7 @@
 
 .thumbnail-asset {
     position: relative;
-    border: 1px solid #bbb;
+    border: 1px solid @frame;
     border-radius: 5px;
     margin: 10px;
     text-align: center;
@@ -14,7 +14,7 @@
 	position: absolute;
 	top: 0;
 	right: 0;
-	background-color: #999;
+	background-color: @shadow;
 	color: white;
 	border-radius: 5px;
 	padding: 5px;
@@ -32,7 +32,7 @@
 }
 
 span.has-error {
-    color: #a94442;
+    color: @error;
     font-weight: bold;
 }
 
@@ -44,10 +44,10 @@ ul.list-group {
 	height: 8em;
 	text-decoration: none;
 	padding: 0;
-	overflow: hidden;
-	border-left: 1px solid transparent;
-	border-right: 1px solid transparent;
-	background-color: #f8f8f8;
+	list-style: none;
+	border-left: none;
+	border-right: none;
+	background-color: @light;
 
 	a {
 	    color: black;
@@ -59,7 +59,7 @@ ul.list-group {
 	    &:hover {
 		color: black;
 		text-decoration: none;
-		background-color: #ddd;
+		background-color: @frame;
 	    }
 	}
 
@@ -87,7 +87,7 @@ ul.list-group {
 
 	.list-group-component-amount {
 	    display: inline-block;
-	    color: #888;
+	    color: @dark;
 	}
     }
 }
