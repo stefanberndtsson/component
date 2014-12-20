@@ -2,7 +2,7 @@
   <div class="row info-box-header">
     <h3 class="col-xs-12">{{name}}</h3>
   </div>
-  <div class="row info-box-body">
+  <div {{bind-attr class=":row :info-box-body typeList:info-box-lines"}}>
     {{#each file in files}}
       {{#if typeThumbnail}}
         <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">

@@ -21,11 +21,8 @@
         {{#pagination-pager pagination=model.meta.pagination isDesktop=isDesktop}}
           <div class="col-xs-12 pages-title">
             {{pagination-pager-data pagination=model.meta.pagination total=model.meta.query.total isMobile=isMobile}}
-            {{#if controllers.application.loading}}
-              <div class="loader"></div>
-            {{/if}}
           </div>
-            {{/pagination-pager}}
+        {{/pagination-pager}}
       {{/if}}
     </div>
     {{#if model}}
@@ -47,12 +44,9 @@
         <div class="row info-box-header">
           <div class="col-xs-12">
             {{pagination-pager-data pagination=model.meta.pagination total=model.meta.query.total isDesktop=isDesktop}}
-            {{#if controllers.application.loading}}
-              <div class="loader"></div>
-            {{/if}}
           </div>
         </div>
-        <div class="row info-box-body">
+        <div class="row info-box-body info-box-lines">
           <div class="col-md-12 hidden-sm hidden-xs info-box-table">
             <table class="table">
 	      <thead>
