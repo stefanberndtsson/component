@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    beforeModel: function() {
-	this.transitionTo('comp.index');
-    }
+  beforeModel: function() {
+		this.transitionTo('comp.index');
+  }
 });

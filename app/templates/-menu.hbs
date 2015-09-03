@@ -1,17 +1,17 @@
-<nav {{bind-attr class="loading:loading :navbar :navbar-default"}} role="navigation">
+<nav class="{{loading:loading}} navbar navbar-default" role="navigation">
   <div class="container-fluid hidden-md hidden-lg">
     <ul class="nav navbar-nav col-xs-12 navbar-full-width">
       <li class="pull-left">{{#link-to 'comp.index' (query-params query='' page=1)}}List{{/link-to}}</li>
       {{#if session.isAuthenticated}}
-      <li class="pull-left">{{#link-to 'comp.new'}}Add{{/link-to}}</li>
+        <li class="pull-left">{{#link-to 'comp.new'}}Add{{/link-to}}</li>
       {{/if}}
       {{#if innerWidth}}
         <li class="pull-left disabled"><a href="javascript:void(0)">{{innerWidth}}</a></li>
       {{/if}}
       {{#if session.isAuthenticated}}
-      <li class="navbar-item-right"><a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a></li>
+        <li class="navbar-item-right"><a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a></li>
       {{else}}
-      <li class="navbar-item-right">{{link-to "Login" 'login'}}</li>
+        <li class="navbar-item-right">{{link-to "Login" 'login'}}</li>
       {{/if}}
     </ul>
   </div>
@@ -19,7 +19,7 @@
     <ul class="nav navbar-nav">
       <li>{{#link-to 'comp.index' (query-params query='' page=1)}}List components{{/link-to}}</li>
       {{#if session.isAuthenticated}}
-      <li>{{#link-to 'comp.new'}}Add component{{/link-to}}</li>
+        <li>{{#link-to 'comp.new'}}Add component{{/link-to}}</li>
       {{/if}}
       {{#if innerWidth}}
         <li class="disabled"><a href="javascript:void(0)">{{innerWidth}}</a></li>
@@ -27,14 +27,14 @@
     </ul>
     <ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
       {{#if session.isAuthenticated}}
-      <p class="navbar-text">Logged in as {{session.name}}</p>
-      <li>
-        <a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a>
-      </li>
+        <p class="navbar-text">Logged in as {{session.name}}</p>
+        <li>
+          <a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a>
+        </li>
       {{else}}
-      <li>
-	{{link-to "Login" 'login'}}
-      </li>
+        <li>
+	  {{link-to "Login" 'login'}}
+        </li>
       {{/if}}
     </ul>
   </div><!-- /.container-fluid -->

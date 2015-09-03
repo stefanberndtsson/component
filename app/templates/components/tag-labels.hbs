@@ -1,4 +1,4 @@
-{{#each tag in tagsArray}}
+{{#each tagsArray as |tag|}}
   {{#if unlinked}}
     <span class="label label-default">{{tag.name}}</span>
   {{else}}

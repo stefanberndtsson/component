@@ -1,10 +1,10 @@
 <div class="col-xs-12 pages-center pages">
 {{#if isDesktop}}
-  {{#each page in pageArray}}
+  {{#each pageArray as |page|}}
     {{#if page.spacer}}
       <div class="disabled spacer"><a class="btn"><span>...</span></a></div>
     {{else}}
-      <div {{bind-attr class="page.active:active :page"}}>
+      <div class="{{page.active:active}} page">
 	{{#link-to 'comp.index' (query-params page=page.page.page) class="btn btn-default"}}{{page.page}}{{/link-to}}
       </div>
     {{/if}}
@@ -16,7 +16,7 @@
 <div class="page-button page-button-left">
   {{#if pagination.previous}}
     {{#link-to 'comp.index' (query-params page=pagination.previous) class="btn btn-primary"}}
-      <span>Previous</gspan>
+      <span>Previous</span>
     {{/link-to}}
   {{else}}
     <button class="btn btn-primary disabled">

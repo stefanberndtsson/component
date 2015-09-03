@@ -2,149 +2,149 @@ import Ember from 'ember';
 import ENV from 'component/config/environment';
 
 export default Ember.Object.extend({
-    endpoints: {
-	component:	{ path: 'components'	},
-	asset_data:	{ path: 'asset_data'	},
-	result:		{ path: 'results'	},
-	amount:		{ path: 'amounts'	},
-	tag:		{ path: 'tags'		}
-    },
-    sessionHeaders: function() {
-	var session = this.container.lookup('simple-auth-session:main');
-	var headers = {};
-	if(session && session.get('isAuthenticated')) {
+  endpoints: {
+		component:	{ path: 'components'	},
+		asset_data:	{ path: 'asset_data'	},
+		result:		{ path: 'results'	},
+		amount:		{ path: 'amounts'	},
+		tag:		{ path: 'tags'		}
+  },
+  sessionHeaders: function() {
+		var session = this.container.lookup('simple-auth-session:main');
+		var headers = {};
+		if(session && session.get('isAuthenticated')) {
 	    headers["Authorization"] = "Token " + session.get('token');
-	}
-	return headers;
-    },
-    findOne: function(name, id, params) {
-	var that = this;
-	return this.fetch(this.urlOne(name, id, params))
+		}
+		return headers;
+  },
+  findOne: function(name, id, params) {
+		var that = this;
+		return this.fetch(this.urlOne(name, id, params))
 	    .then(function(data) {
-		return that.extractOne(name, data);
+				return that.extractOne(name, data);
 	    }, this.extractErrors);
-    },
-    findMany: function(name, params) {
-	var that = this;
-	return this.fetch(this.urlMany(name, params))
+  },
+  findMany: function(name, params) {
+		var that = this;
+		return this.fetch(this.urlMany(name, params))
 	    .then(function(data) {
-		return that.extractMany(name, data);
+				return that.extractMany(name, data);
 	    }, this.extractErrors);
-    },
-    fetch: function(url) {
-	var that = this;
-	return Ember.$.ajax({
+  },
+  fetch: function(url) {
+		var that = this;
+		return Ember.$.ajax({
 	    url: url,
 	    method: 'get',
 	    crossDomain: true,
 	    type: 'json',
 	    headers: that.sessionHeaders()
-	});
-    },
-    send: function(url, method, data) {
-	var that = this;
-	return Ember.$.ajax({
+		});
+  },
+  send: function(url, method, data) {
+		var that = this;
+		return Ember.$.ajax({
 	    url: url,
 	    method: method,
 	    crossDomain: true,
 	    type: 'json',
 	    data: data,
 	    headers: that.sessionHeaders()
-	});
-    },
-    sendDelete: function(url) {
-	var that = this;
-	return Ember.$.ajax({
+		});
+  },
+  sendDelete: function(url) {
+		var that = this;
+		return Ember.$.ajax({
 	    url: url,
 	    method: 'delete',
 	    crossDomain: true,
 	    type: 'json',
 	    headers: that.sessionHeaders()
-	});
-    },
-    endpoint: function(name) {
-	if(this.endpoints[name]) {
+		});
+  },
+  endpoint: function(name) {
+		if(this.endpoints[name]) {
 	    return this.endpoints[name];
-	} else {
+		} else {
 	    console.log("ERROR! Missing endpoint for", name);
 	    return undefined;
-	}
-    },
-    plural: function(name) {
-	if(this.endpoint(name) && this.endpoint(name).plural) {
+		}
+  },
+  plural: function(name) {
+		if(this.endpoint(name) && this.endpoint(name).plural) {
 	    return this.endpoint(name).plural;
-	} else {
+		} else {
 	    return name+'s';
-	}
-    },
-    singular: function(name) {
-	if(this.endpoint(name) && this.endpoint(name).singular) {
+		}
+  },
+  singular: function(name) {
+		if(this.endpoint(name) && this.endpoint(name).singular) {
 	    return this.endpoint(name).singular;
-	} else {
+		} else {
 	    return name;
-	}
-    },
-    urlOne: function(name, id, params) {
-	var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path + '/' + id;
-	if(params) {
+		}
+  },
+  urlOne: function(name, id, params) {
+		var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path + '/' + id;
+		if(params) {
 	    url += '?' + Ember.$.param(params);
-	}
-	return url;
-    },
-    urlMany: function(name, params) {
-	var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path;
-	if(params) {
+		}
+		return url;
+  },
+  urlMany: function(name, params) {
+		var url = ENV.APP.serviceURL + '/' + this.endpoint(name).path;
+		if(params) {
 	    url += '?' + Ember.$.param(params);
-	}
-	return url;
-    },
-    extractOne: function(name, data) {
-	var singularName = this.singular(name);
-	if(data.meta) {
+		}
+		return url;
+  },
+  extractOne: function(name, data) {
+		var singularName = this.singular(name);
+		if(data.meta) {
 	    data[singularName].meta = data.meta;
-	}
-	data[singularName].errors = this.extractErrors(data);
-	return data[singularName];
-    },
-    extractMany: function(name, data) {
-	var pluralName = this.plural(name);
-	var list = data[pluralName];
-	if(data.meta) {
+		}
+		data[singularName].errors = this.extractErrors(data);
+		return data[singularName];
+  },
+  extractMany: function(name, data) {
+		var pluralName = this.plural(name);
+		var list = data[pluralName];
+		if(data.meta) {
 	    list.meta = data.meta;
-	}
-	list.errors = this.extractErrors(data);
-	return list;
-    },
-    extractErrors: function(reason_or_data) {
-	if(reason_or_data.responseJSON) {
+		}
+		list.errors = this.extractErrors(data);
+		return list;
+  },
+  extractErrors: function(reason_or_data) {
+		if(reason_or_data.responseJSON) {
 	    return {
-		errors: reason_or_data.responseJSON.errors,
-		status: reason_or_data.status
+				errors: reason_or_data.responseJSON.errors,
+				status: reason_or_data.status
 	    };
-	} else {
+		} else {
 	    return reason_or_data.errors;
-	}
-	return undefined;
-    },
-    destroy: function(name, id) {
-	return this.sendDelete(this.urlOne(name, id));
-    },
-    saveUpdate: function(name, id, data) {
-	var that = this;
-	var dataObject = {};
-	dataObject[name] = data;
-	return this.send(this.urlOne(name, id), 'put', dataObject)
+		}
+		return undefined;
+  },
+  destroy: function(name, id) {
+		return this.sendDelete(this.urlOne(name, id));
+  },
+  saveUpdate: function(name, id, data) {
+		var that = this;
+		var dataObject = {};
+		dataObject[name] = data;
+		return this.send(this.urlOne(name, id), 'put', dataObject)
 	    .then(function(data) {
-		return that.extractOne(name, data);
+				return that.extractOne(name, data);
 	    }, this.extractErrors);
-    },
-    saveCreate: function(name, data) {
-	var that = this;
-	var dataObject = {};
-	dataObject[name] = data;
-	return this.send(this.urlMany(name), 'post', dataObject)
+  },
+  saveCreate: function(name, data) {
+		var that = this;
+		var dataObject = {};
+		dataObject[name] = data;
+		return this.send(this.urlMany(name), 'post', dataObject)
 	    .then(function(data) {
-		return that.extractOne(name, data);
+				return that.extractOne(name, data);
 	    }, this.extractErrors);
-    }
+  }
 });

@@ -1,9 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    needs: ['application'],
-    queryParams: ['page', 'query'],
-    isMobileBinding: 'controllers.application.isMobile',
-    isDesktopBinding: 'controllers.application.isDesktop',
-    loading: false
+	application: Ember.inject.controller(),
+  queryParams: ['page', 'query'],
+  isMobileBinding: 'application.isMobile',
+  isDesktopBinding: 'application.isDesktop',
+  loading: false
 });

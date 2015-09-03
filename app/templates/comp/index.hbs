@@ -5,7 +5,7 @@
         <div class="form-group">
 	  <div class="input-group">
 	    {{input id="search-query" value=searchQuery classBinding=":form-control"
-            action="search" placeholder="Enter query"}}
+            enter="search" placeholder="Enter query"}}
 	    <span class="input-group-btn">
 	      <button class="btn btn-primary" {{action 'search' searchQuery}}>Search</button>
 	    </span>
@@ -29,7 +29,7 @@
       {{#if isMobile}}
         <div class="row info-box-body">
           <ul class="list-group hidden-md hidden-lg">
-            {{#each item in model}}
+            {{#each model as |item|}}
               {{comp-list-item-mobile item=item isMobile=isMobile}}
             {{/each}}
           </ul>
@@ -59,7 +59,7 @@
 	        </tr>
 	      </thead>
 	      <tbody>
-	        {{#each item in model}}
+	        {{#each model as |item|}}
                   {{comp-list-item-desktop item=item isDesktop=isDesktop}}
 	        {{/each}}
 	      </tbody>

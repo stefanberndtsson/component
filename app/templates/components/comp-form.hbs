@@ -21,7 +21,7 @@
           </div>
           <div class="col-xs-6 col-md-8">
             {{#if errors.name}}
-              {{#each msg in errors.name}}
+              {{#each errors.name as |msg|}}
                 <span class="has-error"><span class="glyphicon glyphicon-ban-circle"></span> {{msg}}</span>
               {{/each}}
             {{/if}}
@@ -37,7 +37,7 @@
           </div>
           <div class="col-xs-6 col-md-8">
             {{#if errors.summary}}
-              {{#each msg in errors.summary}}
+              {{#each errors.summary as |msg|}}
                 <span class="has-error"><span class="glyphicon glyphicon-ban-circle"></span> {{msg}}</span>
               {{/each}}
             {{/if}}
@@ -53,7 +53,7 @@
           </div>
           <div class="col-xs-6 col-md-8">
             {{#if errors.description}}
-              {{#each msg in errors.description}}
+              {{#each errors.description as |msg|}}
                 <span class="has-error"><span class="glyphicon glyphicon-ban-circle"></span> {{msg}}</span>
               {{/each}}
             {{/if}}
@@ -68,11 +68,11 @@
             <label>Tags</label>
           </div>
           <div class="col-xs-8 col-md-6">
-            {{input type="text" classBinding=":form-control" value=tagInput action='addTag'}}
+            {{input type="text" classBinding=":form-control" value=tagInput enter='addTag'}}
           </div>
           <div class="col-xs-12" style="margin-top: 3px;">
             <span class="label label-default" style="visibility: hidden; width: 0; padding-left: 0; padding-right: 0;">&nbsp;</span>
-            {{#each tag in model.tags}}
+            {{#each model.tags as |tag|}}
               <span class="label label-default"><span class="glyphicon glyphicon-remove tag-remove" {{action 'removeTag' tag}}></span> {{tag}}</span>
             {{/each}}
           </div>
@@ -83,7 +83,7 @@
             <label>Amount</label>
           </div>
           <div class="col-xs-12">
-            {{view Ember.Select content=amountsSelection
+            {{view "select" content=amountsSelection
             value=model.amount
             optionValuePath="content.name"
             optionLabelPath="content.name"}}
@@ -97,7 +97,7 @@
             </div>
             <div class="col-xs-6 col-md-8">
               {{#if errors.amount_value}}
-                {{#each msg in errors.amount_value}}
+                {{#each errors.amount_value as |msg|}}
                   <span class="has-error"><span class="glyphicon glyphicon-ban-circle"></span> {{msg}}</span>
                 {{/each}}
               {{/if}}
@@ -116,7 +116,7 @@
           </div>
           <div class="col-xs-6 col-md-8">
             {{#if errors.spares}}
-              {{#each msg in errors.spares}}
+              {{#each errors.spares as |msg|}}
                 <span class="has-error" style="line-height: 1.8;"><span class="glyphicon glyphicon-ban-circle"></span> {{msg}}</span>
               {{/each}}
             {{/if}}

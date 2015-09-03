@@ -4,16 +4,16 @@
   </div>
   {{#if hasFiles}}
     <div class="col-md-6 col-lg-6">
-      {{#if files.datasheets}}
-        {{file-box componentId=model.id name='Datasheets' files=files.datasheets type='thumbnails' imageSize=240}}
+      {{#if model.files.datasheets}}
+        {{file-box componentId=model.id name='Datasheets' files=model.files.datasheets type='thumbnails' imageSize=240}}
       {{/if}}
       
-      {{#if files.documents}}
-        {{file-box componentId=model.id name='Documents' files=files.documents type='list'}}
+      {{#if model.files.documents}}
+        {{file-box componentId=model.id name='Documents' files=model.files.documents type='list'}}
       {{/if}}
       
-      {{#if files.images}}
-        {{file-box componentId=model.id name='Images' files=files.images type='thumbnails' imageSize=160}}
+      {{#if model.files.images}}
+        {{file-box componentId=model.id name='Images' files=model.files.images type='thumbnails' imageSize=160}}
       {{/if}}
     </div>
   {{/if}}

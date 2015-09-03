@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
-export default Ember.ObjectController.extend({
-    needs: ['application'],
-    isMobileBinding: 'controllers.application.isMobile',
-    isDesktopBinding: 'controllers.application.isDesktop'
+export default Ember.Controller.extend({
+  application: Ember.inject.controller(),
+  isMobileBinding: 'application.isMobile',
+  isDesktopBinding: 'application.isDesktop'
 });

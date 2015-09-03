@@ -2,8 +2,8 @@
   <div class="row info-box-header">
     <h3 class="col-xs-12">{{name}}</h3>
   </div>
-  <div {{bind-attr class=":row :info-box-body typeList:info-box-lines"}}>
-    {{#each file in files}}
+  <div class="row info-box-body {{typeList:info-box-lines}}">
+    {{#each files as |file|}}
       {{#if typeThumbnail}}
         <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4">
 	  <div class="thumbnail-asset">
