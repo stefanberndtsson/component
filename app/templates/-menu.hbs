@@ -35,6 +35,11 @@
         <li>
 	  {{link-to "Login" 'login'}}
         </li>
+        {{#if casUrl}}
+        <li>
+	  <a href="{{casUrl}}">CAS</a>
+        </li>
+        {{/if}}
       {{/if}}
     </ul>
   </div><!-- /.container-fluid -->

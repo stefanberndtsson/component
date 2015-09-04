@@ -17,14 +17,20 @@ export default Base.extend({
 		});
   },
   authenticate: function(credentials) {
+		var authCredentials = {};
+		if(credentials.cas_ticket && credentials.cas_service) {
+			authCredentials = credentials;
+		} else {
+			authCredentials = {
+				username: credentials.identification,
+				password: credentials.password
+			};
+		}
 		return new Ember.RSVP.Promise(function(resolve, reject) {
 	    Ember.$.ajax({
 				type: 'POST',
 				url: ENV.APP.authenticationBaseURL,
-				data: JSON.stringify({
-					username: credentials.identification,
-					password: credentials.password
-				}),
+				data: JSON.stringify(authCredentials),
 				contentType: 'application/json'
 	    }).then(function(response) {
 				var token = response.access_token;
